@@ -1,0 +1,433 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="组合选择符基本介绍
+
+组合选择符说明了两个选择器直接的关系
+CSS组合选择符包括各种简单选择符的组合方式
+在 CSS3 中包含了四种组合方式
+后代选取器(以空格分隔)
+子元素选择器(以大于号分隔）
+相邻兄弟选择器（以加号分隔）
+普通兄弟选择器（以破折号分隔）">
+  
+  <title>CSS 组合选择符用法总结 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/09/04/学会使用box-sizingCSS布局/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        学会使用box-sizingCSS布局
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/08/29/写给大家看的设计书总结/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        写给大家看的设计书总结
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>CSS 组合选择符用法总结</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-09-04</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/CSS/">CSS</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="组合选择符基本介绍"><a href="#组合选择符基本介绍" class="headerlink" title="组合选择符基本介绍"></a>组合选择符基本介绍</h3><hr>
+<ul>
+<li>组合选择符说明了两个选择器直接的关系</li>
+<li><code>CSS</code>组合选择符包括各种简单选择符的组合方式</li>
+<li>在 <code>CSS3</code> 中包含了四种组合方式<ul>
+<li>后代选取器(以空格分隔)</li>
+<li>子元素选择器(以大于号分隔）</li>
+<li>相邻兄弟选择器（以加号分隔）</li>
+<li>普通兄弟选择器（以破折号分隔）<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="后代选取器"><a href="#后代选取器" class="headerlink" title="后代选取器"></a>后代选取器</h3><hr>
+<ul>
+<li><p>后代选取器匹配所有值得元素的后代元素</p>
+</li>
+<li><p>实例：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是通过后代选择器选择的元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>002<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是通过后代选择器选择的元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E5%90%8E%E4%BB%A3%E9%80%89%E6%8B%A9%E5%99%A8.png" alt=""></p>
+<h3 id="子元素选择器"><a href="#子元素选择器" class="headerlink" title="子元素选择器"></a>子元素选择器</h3><hr>
+<ul>
+<li><p>如果您不希望选择任意的后代元素，而是希望缩小范围，只选择某个元素的子元素，请使用子元素选择器</p>
+</li>
+<li><p><code>html</code>代码的文档树结构如图</p>
+</li>
+</ul>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/div.png" alt=""></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mainDiv"</span>&gt;</span></span><br><span class="line">    我是主DIV</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"son"</span>&gt;</span>儿子</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sunzi"</span>&gt;</span>孙子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mainDiv</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>:yellow;</span><br><span class="line">	<span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sunzi</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>:red;</span><br><span class="line">	<span class="attribute">width</span>:<span class="number">40px</span>;</span><br><span class="line">	<span class="attribute">height</span>:<span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.mainDiv</span> &gt; <span class="selector-tag">div</span>&#123;<span class="attribute">background</span>:green;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E5%AD%90%E4%BB%A3.png" alt=""></p>
+<ul>
+<li>然后我们去掉子代选择器，添加一个后代选择器</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mainDiv</span> <span class="selector-tag">div</span>&#123;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E5%90%8E%E4%BB%A31.png" alt=""></p>
+<ul>
+<li>经过上面的结果展示，我们能得到结论:子代选择器~ 和后代选择（空格）的区别：<ul>
+<li>子代选择器：只对应用对象的直接相应子节点有效。如实例代码中的儿子<code>div</code></li>
+<li>后代选择器：对应用对象内的所有相应子节点都有效。如实例中的儿子<code>div</code>和孙子<code>div</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="相邻兄弟选择器"><a href="#相邻兄弟选择器" class="headerlink" title="相邻兄弟选择器"></a>相邻兄弟选择器</h3><hr>
+<ul>
+<li>相邻兄弟选择器可选择紧接在另一元素后的元素，且二者有相同父元素</li>
+<li>以下实例选取了所有位于 <code>&lt;div&gt;</code> 元素后的第一个 <code>&lt;p&gt;</code> 元素</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>001<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>002<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>003<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是通过相邻兄弟选择器选择的元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> + <span class="selector-tag">p</span>&#123;<span class="attribute">background</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E7%9B%B8%E9%82%BB%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8.png" alt=""></p>
+<h3 id="普通相邻兄弟选择器"><a href="#普通相邻兄弟选择器" class="headerlink" title="普通相邻兄弟选择器"></a>普通相邻兄弟选择器</h3><hr>
+<ul>
+<li>普通兄弟选择器选取所有指定元素的相邻兄弟元素</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>001<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>002<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>003<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是普通相邻兄弟选择器~选择的<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是普通相邻兄弟选择器~选择的<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是普通相邻兄弟选择器~选择的<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> ~ <span class="selector-tag">p</span>&#123;<span class="attribute">background</span>:red;&#125;</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<p><img src="http://7xq6al.com1.z0.glb.clouddn.com/%E6%99%AE%E9%80%9A%E7%9B%B8%E9%82%BB%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8.png" alt=""></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#组合选择符基本介绍"><span class="toc-text">组合选择符基本介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后代选取器"><span class="toc-text">后代选取器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子元素选择器"><span class="toc-text">子元素选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相邻兄弟选择器"><span class="toc-text">相邻兄弟选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通相邻兄弟选择器"><span class="toc-text">普通相邻兄弟选择器</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/09/04/学会使用box-sizingCSS布局/" class="prev">&larr; Prev post 学会使用box-sizingCSS布局</a>
+  
+
+  
+
+  
+    <a href="/2016/08/29/写给大家看的设计书总结/" class="next">Next post 写给大家看的设计书总结 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/09/04/CSS 组合选择符用法总结/" data-title="CSS 组合选择符用法总结" data-url="http://www.poetries.top/2016/09/04/CSS 组合选择符用法总结/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

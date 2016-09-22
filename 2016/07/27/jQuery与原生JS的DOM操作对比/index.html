@@ -1,0 +1,445 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="1. 创建元素节点
+原生JS创建元素节点: document.createElement(&quot;p&quot;);
+jQuery创建元素节点：$(&#39;&lt;p&gt;&lt;/p&gt;&#39;);
+
+2. 创建并添加文本节点:
+原生JS创建文本节点：document.createTextNode(&quot;Text Content&quot;);
+通常创建文本节点和创建元...">
+  
+  <title>jQuery与原生JS的DOM操作对比 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/30/绝对定位与相对定位/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        绝对定位与相对定位
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/27/JavaScript中property和attribute的区别/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript中property和attribute的区别
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>jQuery与原生JS的DOM操作对比</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-27</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/jQuery/">jQuery</a>
+      
+      </span>
+      
+    </p>
+    
+    <hr>
+<h3 id="1-创建元素节点"><a href="#1-创建元素节点" class="headerlink" title="1. 创建元素节点"></a>1. 创建元素节点</h3><ul>
+<li>原生JS创建元素节点: <code>document.createElement(&quot;p&quot;);</code></li>
+<li>jQuery创建元素节点：<code>$(&#39;&lt;p&gt;&lt;/p&gt;&#39;);</code></li>
+</ul>
+<h3 id="2-创建并添加文本节点"><a href="#2-创建并添加文本节点" class="headerlink" title="2. 创建并添加文本节点:"></a>2. 创建并添加文本节点:</h3><ul>
+<li>原生JS创建文本节点：<code>document.createTextNode(&quot;Text Content&quot;);</code></li>
+<li>通常创建文本节点和创建元素节点配合使用，比如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textEl = <span class="built_in">document</span>.createTextNode(<span class="string">"Hello World."</span>);</span><br><span class="line"><span class="keyword">var</span> pEl = <span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</span><br><span class="line">pEl.appendChild(textEl);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>jQuery创建并添加文本节点：<code>var $p = $(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code></li>
+</ul>
+<h3 id="3-复制节点"><a href="#3-复制节点" class="headerlink" title="3. 复制节点"></a>3. 复制节点</h3><ul>
+<li><p>原生JS复制节点: <code>var newEl = pEl.cloneNode(true);</code></p>
+<ul>
+<li><code>true</code>和<code>false</code>的区别：<ul>
+<li><code>true</code> ：克隆整个<code>&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;</code>节点</li>
+<li><code>false</code>：只克隆<code>&#39;&lt;p&gt;&lt;/p&gt;&#39;</code>，不克隆文本<code>&#39;Hello World.&#39;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>jQuery</code>复制节点：<code>$newEl = $(&#39;#pEl&#39;).clone(true);</code></p>
+</li>
+</ul>
+<p><strong>注意：</strong>克隆节点要避免<code>ID</code>重复</p>
+<h3 id="4-插入节点"><a href="#4-插入节点" class="headerlink" title="4. 插入节点"></a>4. 插入节点</h3><ul>
+<li>原生JS向子节点列表的末尾添加新的子节点：<br><code>El.appendChild(newNode);</code></li>
+<li><p>原生JS在节点的已有子节点之前插入一个新的子节点：<br><code>El.insertBefore(newNode, targetNode);</code></p>
+</li>
+<li><p>在jQuery中，插入节点的方法比原生JS多的多：</p>
+<ul>
+<li><code>$(&#39;#El&#39;).append(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code>             在匹配元素子节点列表结尾添加内容</li>
+<li><code>$(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;).appendTo(&#39;#El&#39;);</code>        把匹配元素添加到目标元素子节点列表结尾</li>
+<li><code>$(&#39;#El&#39;).prepend(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code>     在匹配元素子节点列表开头添加内容</li>
+<li><code>$(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;).prependTo(&#39;#El&#39;);</code>  把匹配元素添加到目标元素子节点列表开头</li>
+<li><code>$(&#39;#El&#39;).before(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code>         在匹配元素之前添加目标内容</li>
+<li><code>$(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;).insertBefore(&#39;#El&#39;);</code>       把匹配元素添加到目标元素之前</li>
+<li><code>$(&#39;#El&#39;).after(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code>          在匹配元素之后添加目标内容</li>
+<li><code>$(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;).insertAfter(&#39;#El&#39;);</code>        把匹配元素添加到目标元素之后</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-删除节点"><a href="#5-删除节点" class="headerlink" title="5. 删除节点"></a>5. 删除节点</h3><ul>
+<li>原生JS删除节点: <code>El.parentNode.removeChild(El);</code></li>
+<li>jQuery删除节点:<code>$(&#39;#El&#39;).remove();</code></li>
+</ul>
+<h3 id="6-替换节点"><a href="#6-替换节点" class="headerlink" title="6. 替换节点"></a>6. 替换节点</h3><ul>
+<li><p>原生JS替换节点: <code>El.repalceChild(newNode, oldNode);</code><br>注意：<code>oldNode</code>必须是<code>parentEl</code>真实存在的一个子节点</p>
+</li>
+<li><p>jQuery替换节点:<code>$(&#39;p&#39;).replaceWith(&#39;&lt;p&gt;Hello World.&lt;/p&gt;&#39;);</code></p>
+</li>
+</ul>
+<h3 id="7-设置属性-获取属性"><a href="#7-设置属性-获取属性" class="headerlink" title="7. 设置属性/获取属性"></a>7. 设置属性/获取属性</h3><ul>
+<li><p>原生JS设置属性/获取属性:</p>
+<ul>
+<li><code>imgEl.setAttribute(&quot;title&quot;, &quot;logo&quot;);</code></li>
+<li><code>imgEl.getAttribute(&quot;title&quot;);</code></li>
+<li><code>checkboxEl.checked = true;</code></li>
+<li><code>checkboxEl.checked;</code></li>
+</ul>
+</li>
+<li><p>jQuery设置属性/获取属性:</p>
+<p> -<code>$(&quot;#logo&quot;).attr({&quot;title&quot;: &quot;logo&quot;});</code></p>
+<ul>
+<li><code>$(&quot;#logo&quot;).attr(&quot;title&quot;);</code></li>
+<li><code>$(&quot;#checkbox&quot;).prop({&quot;checked&quot;: true});</code></li>
+<li><code>$(&quot;#checkbox&quot;).prop(&quot;checked&quot;);</code></li>
+</ul>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建元素节点"><span class="toc-text">1. 创建元素节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建并添加文本节点"><span class="toc-text">2. 创建并添加文本节点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-复制节点"><span class="toc-text">3. 复制节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-插入节点"><span class="toc-text">4. 插入节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-删除节点"><span class="toc-text">5. 删除节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-替换节点"><span class="toc-text">6. 替换节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-设置属性-获取属性"><span class="toc-text">7. 设置属性/获取属性</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/30/绝对定位与相对定位/" class="prev">&larr; Prev post 绝对定位与相对定位</a>
+  
+
+  
+
+  
+    <a href="/2016/07/27/JavaScript中property和attribute的区别/" class="next">Next post JavaScript中property和attribute的区别 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/07/27/jQuery与原生JS的DOM操作对比/" data-title="jQuery与原生JS的DOM操作对比" data-url="http://www.poetries.top/2016/07/27/jQuery与原生JS的DOM操作对比/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

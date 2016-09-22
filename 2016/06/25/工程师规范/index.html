@@ -1,0 +1,455 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="第一部分：工程师规范 - 开发准备
+了解产品和设计
+
+参加需求、交互、视觉会议，了解产品设计和项目成员。
+了解产品面向的设备和平台。
+了解产品对兼容性的要求以及是否采用响应式设计等。
+了解产品要使用的技术（WEB技术、桌面技术、APP技术、模板语言、混合模式等）。
+
+提出疑问和见解">
+  
+  <title>工程师规范 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/06/25/css常用属性梳理（一）/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css常用属性梳理（一）
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/06/25/CSS编码规范-网易/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        CSS编码规范-网易
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>工程师规范</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-06-25</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/规范/">规范</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="第一部分：工程师规范-开发准备"><a href="#第一部分：工程师规范-开发准备" class="headerlink" title="第一部分：工程师规范 - 开发准备"></a><strong>第一部分：工程师规范 - 开发准备</strong></h3><hr>
+<p><strong>了解产品和设计</strong></p>
+<ul>
+<li>参加需求、交互、视觉会议，了解产品设计和项目成员。</li>
+<li>了解产品面向的设备和平台。</li>
+<li>了解产品对兼容性的要求以及是否采用响应式设计等。</li>
+<li>了解产品要使用的技术（WEB技术、桌面技术、APP技术、模板语言、混合模式等）。</li>
+</ul>
+<p><strong>提出疑问和见解</strong></p>
+<a id="more"></a>
+<ul>
+<li>在交互或视觉会议中结合技术要求，提出疑问和见解。</li>
+<li>提出可能存在的问题（技术实现问题、性能问题等），协商解决方案（如优雅退化）并达成共识。</li>
+<li>提出已有新技术可能在产品中的应用场景，协助产品创新。</li>
+</ul>
+<p><strong>技术调研和培训</strong></p>
+<ul>
+<li>是否需要技术调研，提出可能存在的风险。</li>
+<li>进行技术调研，产出技术demo，展示demo，反馈调研结果。</li>
+<li>技术调研的内容可以先咨询经验丰富的前端工程师或前端技术组。</li>
+<li>经验不足或新入职员工，可提出培训申请。</li>
+<li>你可以把难以解决的技术问题提交给NEC，NEC将帮助你解决问题。</li>
+<li>了解NEC，特别是代码规范和技术demo。</li>
+</ul>
+<p><strong>预算人力和时间</strong></p>
+<ul>
+<li>根据项目时间要求及工作量，预算人力和时间。</li>
+<li>预算开发周期和阶段性产出。</li>
+<li>提醒需求方在项目管理平台中创建项目并加入项目成员，创建SVN并设置成员权限</li>
+</ul>
+<hr>
+<h3 id="第二部分：工程师规范-开发过程"><a href="#第二部分：工程师规范-开发过程" class="headerlink" title="第二部分：工程师规范 - 开发过程"></a><strong>第二部分：工程师规范 - 开发过程</strong></h3><hr>
+<p><strong>职责任务</strong></p>
+<ul>
+<li>确定一个页面工程师负责人，他将负责对整个页面开发工作做统筹规划、分配协调等管理工作和主开发职责。</li>
+<li>确认交互原型或视觉效果已经定稿，再开始开发工作。</li>
+<li>如果采取并行模式（视觉设计和页面开发同时进行），则以交互原型定稿为准（当视觉效果定稿后，页面工程师再补充细节），开始分配。</li>
+<li>按页面类型分配，同一类型页面分配给同一个人。</li>
+<li>每个人都要了解页面公共元素（多个页面中相同或相似部分），一个公共元素只分配到一个人，每人完成自身页面的同时完成“提取剥离”，你可能需要了解“分类方法规范”。</li>
+<li>由于图片无法使用SVN合并和解决冲突，切图需要统筹分配。</li>
+<li>在项目管理平台中创建细分的开发任务，填写任务详情和时间，如果任务间存在关系，则设置好关联或从属关系。</li>
+</ul>
+<p><strong>页面开发</strong></p>
+<ul>
+<li>创建前端目录，包含“页面开发”目录（如:js、css、html、img）及“提取剥离”目录（如：demo）。</li>
+<li>使用NEC框架创建前端文件，如：<code>css/*.css、html/*.html、demo/grid.html、demo/module.html、demo/unit.htm</code>l。<br>使用NEC代码库和插件，高效开发页面。</li>
+<li>和交互、视觉及其他前端工程师或后端工程师保持良好的沟通。<br>及时反馈问题和建议：对效果疑问的确认、对状态缺失的补充、对优雅退化的建议、对行为结构的说明等等。</li>
+<li>如果采取并行模式（页面开发和JS开发同时进行），则以交互原型定稿为准，JS开发工程师可并行开发业务逻辑层，当页面开发完成后再嵌入UI层。</li>
+</ul>
+<p><strong>提取剥离</strong></p>
+<ul>
+<li>页面开发的同时提取布局（grid）、模块（module）、元件（unit）至对应的HTML文件。</li>
+<li>避免重复劳动，对页面元素一目了然，在增加元素时首先来此目录查找是否已经实现或有相似实现而只需扩展。</li>
+<li>“提取剥离”目录中的HTML文件和“页面开发”目录中的HTML文件需保持同步维护。</li>
+</ul>
+<hr>
+<h3 id="第三部分：工程师规范-开发产出"><a href="#第三部分：工程师规范-开发产出" class="headerlink" title="第三部分：工程师规范 - 开发产出"></a><strong>第三部分：工程师规范 - 开发产出</strong></h3><hr>
+<p><strong>自测联调</strong></p>
+<ul>
+<li>更新、合并、解决冲突、提交。</li>
+<li>对自己的代码进行全面的多设备测试和兼容性测试。</li>
+<li>如果自测过程中发现别人写的代码有问题，及时反馈</li>
+</ul>
+<p><strong>提交验收</strong></p>
+<ul>
+<li>当有阶段性产出后，页面工程师将页面提交给设计师，进行效果验收。</li>
+<li>效果验收将主要检查视觉效果符合度（尺寸、位置、颜色、切图等）。</li>
+<li>如有必要，可以同时提交给经验丰富的前端工程师或前端技术组，进行代码验收。</li>
+<li>代码验收将主要检查兼容性、HTML规范和CSS规范。</li>
+</ul>
+<p><strong>交接说明</strong></p>
+<ul>
+<li>当完成验收后，通知并交给后续的开发工程师，进行模板层开发和行为逻辑开发，页面工程师需要交代可能需要他们注意的地方或者对代码的解释说明。</li>
+<li>如果你的工作需要与别人交接，也需要交代清楚整体架构部署和代码解释。</li>
+</ul>
+<p><strong>总结分享</strong></p>
+<ul>
+<li>分享内容可以包含：架构思想、协作心得、使用NEC体会、设备特性介绍、新技术应用、调研展示、遇到的问题和解决方案等。</li>
+<li>分享对象不限于：交互、视觉、前端及所有感兴趣的人。</li>
+<li>你可以把总结中的技术demo提交给NEC，我们会发布到代码库，以帮助你积累这些技术并分享给别人。</li>
+</ul>
+<p><strong>变更维护</strong></p>
+<ul>
+<li>如果未经过需求变更和设计变更，原则上不允许直接进行开发变更。</li>
+<li>变更前应了解变更原因，变更后应该及时通知后续开发工程师。<br>如果静态资源的版本号不是自动完成更新，你可能需要手动更新版本号。</li>
+<li>变更和维护使用本规范中所有流程，即你可能需要重复之前部分流程。</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一部分：工程师规范-开发准备"><span class="toc-text">第一部分：工程师规范 - 开发准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部分：工程师规范-开发过程"><span class="toc-text">第二部分：工程师规范 - 开发过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三部分：工程师规范-开发产出"><span class="toc-text">第三部分：工程师规范 - 开发产出</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/06/25/css常用属性梳理（一）/" class="prev">&larr; Prev post css常用属性梳理（一）</a>
+  
+
+  
+
+  
+    <a href="/2016/06/25/CSS编码规范-网易/" class="next">Next post CSS编码规范-网易 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/06/25/工程师规范/" data-title="工程师规范" data-url="http://www.poetries.top/2016/06/25/工程师规范/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

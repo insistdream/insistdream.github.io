@@ -1,0 +1,452 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="一、JavaScript中基本的数据类型查看数据类型用：typeof 变量名
+Javascript的数据类型有六种（ES6新增了第七种Symbol）
+
+JS中的值有两种类型：原始类型(Primitive)、对象类型(Object)。
+
+原始类型包括：Undefined、Null、Boolean、Number和String等五种。
+
+Undefined类型和Null类型的都只有一个值，即und...">
+  
+  <title>JavaScript语言基础之数据类型(二) [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/26/JavaScript语言基础之运算符(三)/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript语言基础之运算符(三)
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/26/JavaScript语言基础之函数基础(六)/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript语言基础之函数基础(六)
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JavaScript语言基础之数据类型(二)</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-26</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="一、JavaScript中基本的数据类型"><a href="#一、JavaScript中基本的数据类型" class="headerlink" title="一、JavaScript中基本的数据类型"></a>一、JavaScript中基本的数据类型</h3><p>查看数据类型用：typeof 变量名</p>
+<p><strong>Javascript的数据类型有六种（ES6新增了第七种Symbol）</strong></p>
+<ul>
+<li><p>JS中的值有两种类型：原始类型(<code>Primitive</code>)、对象类型(<code>Object</code>)。</p>
+</li>
+<li><p>原始类型包括：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>等五种。</p>
+</li>
+<li><p><code>Undefined</code>类型和<code>Null</code>类型的都只有一个值，即<code>undefined</code>和<code>null</code>；<code>Boolean</code>类型有两个值：<code>true</code>和<code>false</code>；<code>Number</code>类型的值有很多很多；String类型的值理论上有无数个。</p>
+</li>
+<li><p>所有对象都有<code>valueOf()</code>和<code>toString()</code>方法，它们继承自Object，当然也可能被子类重写</p>
+<a id="more"></a>
+</li>
+</ul>
+<hr>
+<ul>
+<li>数值（<code>number</code>）：整数和小数（比如1和3.14）</li>
+<li>字符串（<code>string</code>）：字符组成的文本（比如”Hello World”）</li>
+<li>布尔值（<code>boolean</code>）：true（真）和false（假）两个特定值</li>
+<li><code>undefined</code>：表示 未定义 或不存在，即此处目前没有任何值</li>
+<li><code>null</code>：表示空缺，即此处应该有一个值，但目前为空</li>
+<li>对象（<code>object</code>）：各种值组成的集合</li>
+</ul>
+<p>通常，我们将数值、字符串、布尔值称为原始类型（primitive type）的值，即它们是最基本的数据类型，不能再细分了。而将对象称为合成类型（complex type）的值，因为一个对象往往是多个原始类型的值的合成，可以看作是一个存放各种值的容器。至于undefined和null，一般将它们看成两个特殊值</p>
+<hr>
+<h3 id="二、数据类型的转换"><a href="#二、数据类型的转换" class="headerlink" title="二、数据类型的转换"></a>二、数据类型的转换</h3><ul>
+<li><p><strong>转换函数</strong></p>
+<ul>
+<li><code>toString()</code> 转换为字符串，在JavaScript中所有数据类型都可以转换为string类型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="number">12</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">n1.toString(); <span class="comment">//"12"</span></span><br><span class="line">n2.toString(); <span class="comment">//"true"</span></span><br><span class="line">a.toString(); <span class="comment">//"1,2,3"</span></span><br><span class="line">o.toString(); <span class="comment">//"[object Object]"</span></span><br><span class="line">f.toString(); <span class="comment">//"function f()&#123;&#125;"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>parseInt()</code>解析出一个string或者number类型的整数部分，如果没有可以转换的部分，则返回NaN（<code>not a number</code>）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="string">"12"</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="string">"23hello"</span>;</span><br><span class="line"><span class="keyword">var</span> n3 = <span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">parseInt</span>(n1); <span class="comment">//12</span></span><br><span class="line"><span class="built_in">parseInt</span>(n2); <span class="comment">//23</span></span><br><span class="line"><span class="built_in">parseInt</span>(n3); <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>parseFloat()</code>解析出一个string的浮点数部分，如果没有可以转换的部分，则返回<code>NaN</code>（not a number）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="string">"1.2.3"</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="string">"1.2hello"</span></span><br><span class="line"><span class="keyword">var</span> n3 = <span class="string">"hello"</span></span><br><span class="line"><span class="built_in">parseFloat</span>(n1); <span class="comment">//1.2</span></span><br><span class="line"><span class="built_in">parseFloat</span>(n2); <span class="comment">//1.2</span></span><br><span class="line"><span class="built_in">parseFloat</span>(n3); <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><strong>强制类型转换</strong></p>
+<ul>
+<li><p><code>Boolean(value)</code>- 把给定的值转换成<code>Boolean</code>型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>(<span class="number">123</span>); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">""</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Boolean</span>([]); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Boolean</span>(&#123;&#125;); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">undefined</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Number(value)</code>-把给定的值转换成数字（可以是整数或浮点数）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="string">"123"</span>); <span class="comment">//123</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">"123h"</span>); <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>); <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>); <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>); <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>([]); <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(&#123;&#125;); <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>String(value)</code>- 把给定的值转换成字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="number">123</span>); <span class="comment">//"123"</span></span><br><span class="line"><span class="built_in">String</span>([<span class="number">1</span>,<span class="number">2</span>]); <span class="comment">//"1,2"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>) <span class="comment">//"undefined"</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">null</span>) <span class="comment">//"null"</span></span><br><span class="line"><span class="built_in">String</span>(&#123;&#125;) <span class="comment">//"[object Object]"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>隐式转换</strong></p>
+<ul>
+<li>数字＋字符串：数字转换为字符串 <code>console.log(12+&quot;12&quot;)</code>; //1212</li>
+<li>数字＋布尔值：true转换为1，false转换为0 <code>console.log(12+true)</code>; //13</li>
+<li>字符串＋布尔值：布尔值转换为true或false <code>console.log(&quot;hello&quot;+true)</code>; //hellotrue</li>
+<li>布尔值＋布尔值 <code>console.log(true+true)</code>; //2</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>null和undefined</strong></li>
+</ul>
+<ul>
+<li><code>undefined</code> 表示一种未知状态，声明了但没有初始化的变量，变量的值时一个未知状态。访问不存在的属性或对象window.xxx）方法没有明确返回值时，返回值是一个undefined.当对未声明的变量应用typeof运算符时，显示为undefined。</li>
+<li><code>null</code>表示尚未存在的对象,null是一个有特殊意义的值。可以为变量赋值为null，此时变量的值为“已知状态”(不是undefined)，即null。（用来初始化变量，清除变量内容，释放内存）</li>
+</ul>
+<pre><code>`undefined==null`   //结果为true,但含义不同。
+`undefined===null` //false,两者类型不一致，前者为“undefined”，后者为“object”
+</code></pre><h3 id="总结一下-运算的规则：-隐式转换"><a href="#总结一下-运算的规则：-隐式转换" class="headerlink" title="总结一下==运算的规则：(隐式转换)"></a>总结一下<code>==</code>运算的规则：(隐式转换)</h3><hr>
+<ul>
+<li><p><code>undefined == null</code>，结果是<code>true</code>。且它俩与所有其他值比较的结果都是<code>false</code>。</p>
+</li>
+<li><p><code>String == Boolean</code>，需要两个操作数同时转为<code>Number</code>。</p>
+</li>
+<li><p><code>String/Boolean == Number</code>，需要<code>String/Boolean</code>转为<code>Number</code>。</p>
+</li>
+<li><p><code>Object == Primitive</code>，需要<code>Object</code>转为<code>Primitive</code>(具体通过<code>valueOf</code>和<code>toString</code>方法)</p>
+</li>
+</ul>
+<hr>
+<h3 id="附录：思维导图总结"><a href="#附录：思维导图总结" class="headerlink" title="附录：思维导图总结"></a>附录：思维导图总结</h3><p><img src="http://7xq6al.com1.z0.glb.clouddn.com/js%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.gif" alt=""></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、JavaScript中基本的数据类型"><span class="toc-text">一、JavaScript中基本的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、数据类型的转换"><span class="toc-text">二、数据类型的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结一下-运算的规则：-隐式转换"><span class="toc-text">总结一下==运算的规则：(隐式转换)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录：思维导图总结"><span class="toc-text">附录：思维导图总结</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/26/JavaScript语言基础之运算符(三)/" class="prev">&larr; Prev post JavaScript语言基础之运算符(三)</a>
+  
+
+  
+
+  
+    <a href="/2016/07/26/JavaScript语言基础之函数基础(六)/" class="next">Next post JavaScript语言基础之函数基础(六) &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/07/26/JavaScript语言基础之数据类型(二)/" data-title="JavaScript语言基础之数据类型(二)" data-url="http://www.poetries.top/2016/07/26/JavaScript语言基础之数据类型(二)/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

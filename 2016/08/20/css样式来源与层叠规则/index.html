@@ -1,0 +1,382 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="“层叠”的概念
+CSS——层叠样式表，其中的“层叠”是什么意思呢？层叠就是浏览器对多个样式来源进行叠加，最终确定结果的过程">
+  
+  <title>css样式来源与层叠规则 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/08/20/css之解读浏览器默认样式/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css之解读浏览器默认样式
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/08/13/学会使用Sublime Text Snippets提高编码速度/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        学会使用Sublime Text Snippets提高编码速度
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>css样式来源与层叠规则</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-08-20</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/CSS/">CSS</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="“层叠”的概念"><a href="#“层叠”的概念" class="headerlink" title="“层叠”的概念"></a>“层叠”的概念</h3><hr>
+<p><code>CSS</code>——层叠样式表，其中的“层叠”是什么意思呢？层叠就是浏览器对多个样式来源进行叠加，最终确定结果的过程<br><a id="more"></a><br><img src="http://images.cnitblog.com/blog/138012/201502/062009519846753.png" alt="enter description here"></p>
+<p> 上图中有两个样式来源，第一个是引用的css1.css，第二个是自己在style中编写的样式。“层叠”是个叠加的过程，可通过下图表示：</p>
+<p> <img src="http://images.cnitblog.com/blog/138012/201502/062010034216948.png" alt="enter description here"></p>
+<p>层叠是CSS的核心机制，理解了它才能以最经济的方式写出最容易改动的<code>CSS</code>，让文档外观在达到设计要求的同时，也给用户留下一些空间，让他们根据需要更改文档的显示效果，例如调整字号</p>
+<h3 id="样式来源"><a href="#样式来源" class="headerlink" title="样式来源"></a>样式来源</h3><hr>
+<p><code>css</code>之所以有“层叠”的概念，是因为有多个样式来源。其实<code>css</code>的样式来源有5个，开发人员只能接触到前面3个</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/062011145462444.png" alt="enter description here"></p>
+<ul>
+<li>第一，浏览器默认样式表</li>
+</ul>
+<p>浏览器自带一个默认的样式，如果<code>html</code>中没有为标签设置样式，则浏览器会按照自己的样式来显示。但是浏览器默认样式的级别是最低的，一旦有其他地方设置了标签样式，浏览器默认样式就会被冲掉</p>
+<p> 注意，不同浏览器的默认样式有些地方是不一样的。例如，我们在写css时，都会首先设置 <code>* {margin:0; padding:0;}</code>这是为何？就是因为有浏览器兼容性问题。干脆，全部弄成0，这样各个浏览器就都统一了</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-tag">html</span>, <span class="selector-tag">address</span>,<span class="selector-tag">blockquote</span>,<span class="selector-tag">body</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">div</span>,<span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">form</span>,<span class="selector-tag">frame</span>, <span class="selector-tag">frameset</span>,<span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">noframes</span>,<span class="selector-tag">ol</span>, <span class="selector-tag">p</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">center</span>,<span class="selector-tag">dir</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">menu</span>, <span class="selector-tag">pre</span> &#123; <span class="attribute">display</span>: block &#125;<span class="comment">/*以上列表元素默认状态下一块状显示，未显示的将以内联元素显示，该列表针对HTML4版本，部分元素在XHTML1中将废弃*/</span></span><br><span class="line"><span class="selector-tag">li</span> &#123; <span class="attribute">display</span>: list-item &#125;<span class="comment">/*默认以列表显示*/</span></span><br><span class="line"><span class="selector-tag">head</span> &#123; <span class="attribute">display</span>: none &#125;<span class="comment">/*默认不显示*/</span></span><br><span class="line"><span class="selector-tag">table</span> &#123; <span class="attribute">display</span>: table &#125;<span class="comment">/*默认为表格显示*/</span></span><br><span class="line"><span class="selector-tag">tr</span> &#123; <span class="attribute">display</span>: table-row &#125;<span class="comment">/*默认为表格行显示*/</span></span><br><span class="line"><span class="selector-tag">thead</span> &#123; <span class="attribute">display</span>: table-header-group &#125;<span class="comment">/*默认为表格头部分组显示*/</span></span><br><span class="line"><span class="selector-tag">tbody</span> &#123; <span class="attribute">display</span>: table-row-group &#125;<span class="comment">/*默认为表格行分组显示*/</span></span><br><span class="line"><span class="selector-tag">tfoot</span> &#123; <span class="attribute">display</span>: table-footer-group &#125;<span class="comment">/*默认为表格底部分组显示*/</span></span><br><span class="line"><span class="selector-tag">col</span> &#123; <span class="attribute">display</span>: table-column &#125;<span class="comment">/*默认为表格列显示*/</span></span><br><span class="line"><span class="selector-tag">colgroup</span> &#123; <span class="attribute">display</span>: table-column-group &#125;<span class="comment">/*默认为表格列分组显示*/</span></span><br><span class="line"><span class="selector-tag">td</span>, <span class="selector-tag">th</span> &#123; <span class="attribute">display</span>: table-cell; &#125;<span class="comment">/*默认为单元格显示*/</span></span><br><span class="line"><span class="selector-tag">caption</span> &#123; <span class="attribute">display</span>: table-caption &#125;<span class="comment">/*默认为表格标题显示*/</span></span><br><span class="line"><span class="selector-tag">th</span> &#123; <span class="attribute">font-weight</span>: bolder; <span class="attribute">text-align</span>: center &#125;<span class="comment">/*默认为表格标题显示，呈现加粗居中状态*/</span></span><br><span class="line"><span class="selector-tag">caption</span> &#123; <span class="attribute">text-align</span>: center &#125;<span class="comment">/*默认为表格标题显示，呈现居中状态*/</span></span><br><span class="line"><span class="selector-tag">body</span> &#123; <span class="attribute">margin</span>: <span class="number">8px</span>; <span class="attribute">line-height</span>: <span class="number">1.12</span> &#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123; <span class="attribute">font-size</span>: <span class="number">2em</span>; <span class="attribute">margin</span>: .<span class="number">67em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h2</span> &#123; <span class="attribute">font-size</span>: <span class="number">1.5em</span>; <span class="attribute">margin</span>: .<span class="number">75em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h3</span> &#123; <span class="attribute">font-size</span>: <span class="number">1.17em</span>; <span class="attribute">margin</span>: .<span class="number">83em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h4</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">form</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dir</span>, <span class="selector-tag">menu</span> &#123; <span class="attribute">margin</span>: <span class="number">1.12em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h5</span> &#123; <span class="attribute">font-size</span>: .<span class="number">83em</span>; <span class="attribute">margin</span>: <span class="number">1.5em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h6</span> &#123; <span class="attribute">font-size</span>: .<span class="number">75em</span>; <span class="attribute">margin</span>: <span class="number">1.67em</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">b</span>,<span class="selector-tag">strong</span> &#123; <span class="attribute">font-weight</span>: bolder &#125;</span><br><span class="line"><span class="selector-tag">blockquote</span> &#123; <span class="attribute">margin-left</span>: <span class="number">40px</span>; <span class="attribute">margin-right</span>: <span class="number">40px</span> &#125;</span><br><span class="line"><span class="selector-tag">i</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">em</span>,<span class="selector-tag">var</span>, <span class="selector-tag">address</span> &#123; <span class="attribute">font-style</span>: italic &#125;</span><br><span class="line"><span class="selector-tag">pre</span>, <span class="selector-tag">tt</span>, <span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>: monospace &#125;</span><br><span class="line"><span class="selector-tag">pre</span> &#123; <span class="attribute">white-space</span>: pre &#125;</span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">input</span>, <span class="selector-tag">object</span>, <span class="selector-tag">select</span> &#123; <span class="attribute">display</span>:inline-block; &#125;</span><br><span class="line"><span class="selector-tag">big</span> &#123; <span class="attribute">font-size</span>: <span class="number">1.17em</span> &#125;</span><br><span class="line"><span class="selector-tag">small</span>, <span class="selector-tag">sub</span>, <span class="selector-tag">sup</span> &#123; <span class="attribute">font-size</span>: .<span class="number">83em</span> &#125;</span><br><span class="line"><span class="selector-tag">sub</span> &#123; <span class="attribute">vertical-align</span>: sub &#125;<span class="comment">/*定义sub元素默认为下标显示*/</span></span><br><span class="line"><span class="selector-tag">sup</span> &#123; <span class="attribute">vertical-align</span>: super &#125;<span class="comment">/*定义sub元素默认为上标显示*/</span></span><br><span class="line"><span class="selector-tag">table</span> &#123; <span class="attribute">border-spacing</span>: <span class="number">2px</span>; &#125;</span><br><span class="line"><span class="selector-tag">thead</span>, <span class="selector-tag">tbody</span>, <span class="selector-tag">tfoot</span> &#123; <span class="attribute">vertical-align</span>: middle &#125;<span class="comment">/*定义表头、主体表、表脚元素默认为垂直对齐*/</span></span><br><span class="line"><span class="selector-tag">td</span>, <span class="selector-tag">th</span> &#123; <span class="attribute">vertical-align</span>: inherit &#125;<span class="comment">/*定义单元格、列标题默认为垂直对齐默认为继承*/</span></span><br><span class="line"><span class="selector-tag">s</span>, <span class="selector-tag">strike</span>, <span class="selector-tag">del</span> &#123; <span class="attribute">text-decoration</span>: line-through &#125;<span class="comment">/*定义这些元素默认为删除线显示*/</span></span><br><span class="line"><span class="selector-tag">hr</span> &#123; <span class="attribute">border</span>: <span class="number">1px</span> inset &#125;<span class="comment">/*定义分割线默认为1px宽的3D凹边效果*/</span></span><br><span class="line"><span class="selector-tag">ol</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">dir</span>, <span class="selector-tag">menu</span>, <span class="selector-tag">dd</span> &#123; <span class="attribute">margin-left</span>: <span class="number">40px</span> &#125;</span><br><span class="line"><span class="selector-tag">ol</span> &#123; <span class="attribute">list-style-type</span>: decimal &#125;</span><br><span class="line"><span class="selector-tag">ol</span> <span class="selector-tag">ul</span>, <span class="selector-tag">ul</span> <span class="selector-tag">ol</span>, <span class="selector-tag">ul</span> <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> <span class="selector-tag">ol</span> &#123; <span class="attribute">margin-top</span>: <span class="number">0</span>; <span class="attribute">margin-bottom</span>: <span class="number">0</span> &#125;</span><br><span class="line"><span class="selector-tag">u</span>, <span class="selector-tag">ins</span> &#123; <span class="attribute">text-decoration</span>: underline &#125;</span><br><span class="line"><span class="selector-tag">br</span><span class="selector-pseudo">:before</span> &#123; <span class="attribute">content</span>: <span class="string">"A"</span> &#125;<span class="comment">/*定义换行元素的伪对象内容样式*/</span></span><br><span class="line"><span class="selector-pseudo">:before</span>, <span class="selector-pseudo">:after</span> &#123; <span class="attribute">white-space</span>: pre-line &#125;<span class="comment">/*定义伪对象空格字符的默认样式*/</span></span><br><span class="line"><span class="selector-tag">center</span> &#123; <span class="attribute">text-align</span>: center &#125;</span><br><span class="line"><span class="selector-tag">abbr</span>, <span class="selector-tag">acronym</span> &#123; <span class="attribute">font-variant</span>: small-caps; <span class="attribute">letter-spacing</span>: <span class="number">0.1em</span> &#125;</span><br><span class="line"><span class="selector-pseudo">:link</span>, <span class="selector-pseudo">:visited</span> &#123; <span class="attribute">text-decoration</span>: underline &#125;</span><br><span class="line"><span class="selector-pseudo">:focus</span> &#123; <span class="attribute">outline</span>: thin dotted invert &#125;</span><br><span class="line"> <span class="comment">/* Begin bidirectionality settings (do not change) */</span></span><br><span class="line"><span class="selector-tag">BDO</span><span class="selector-attr">[DIR="ltr"]</span> &#123; <span class="attribute">direction</span>: ltr; <span class="attribute">unicode-bidi</span>: bidi-override &#125;<span class="comment">/*定义BDO元素当其属性为DIR="ltr"时的默认文本读写显示顺序*/</span></span><br><span class="line"><span class="selector-tag">BDO</span><span class="selector-attr">[DIR="rtl"]</span> &#123; <span class="attribute">direction</span>: rtl; <span class="attribute">unicode-bidi</span>: bidi-override &#125;<span class="comment">/*定义BDO元素当其属性为DIR="rtl"时的默认文本读写显示顺序*/</span></span><br><span class="line">*<span class="selector-attr">[DIR="ltr"]</span> &#123; <span class="attribute">direction</span>: ltr; <span class="attribute">unicode-bidi</span>: embed &#125;<span class="comment">/*定义任何元素当其属性为DIR="ltr"时的默认文本读写显示顺序*/</span></span><br><span class="line">*<span class="selector-attr">[DIR="rtl"]</span> &#123; <span class="attribute">direction</span>: rtl; <span class="attribute">unicode-bidi</span>: embed &#125;<span class="comment">/*定义任何元素当其属性为DIR="rtl"时的默认文本读写显示顺序*/</span></span><br><span class="line">@<span class="keyword">media</span> print &#123; <span class="comment">/*定义标题和列表默认的打印样式*/</span></span><br><span class="line">    <span class="selector-tag">h1</span> &#123; <span class="attribute">page-break-before</span>: always &#125;</span><br><span class="line">    <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>,    <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span> &#123; <span class="attribute">page-break-after</span>: avoid &#125;</span><br><span class="line">    <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">dl</span> &#123; <span class="attribute">page-break-before</span>: avoid &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="层叠的规则"><a href="#层叠的规则" class="headerlink" title="层叠的规则"></a>层叠的规则</h3><hr>
+<p>由于样式的来源不同，浏览器在加载样式时，需要计算出最终的样式值，这样才能显示出正确的界面效果——浏览器会通过叠加和覆盖这两种方式来生成最终的样式值。</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/062013043288083.png" alt=""></p>
+<p>不同来源的两个样式，第一个样式设置了<code>font-weight</code>，第二个没有，浏览器会把它叠加在一起，即浏览器会把各个零散的整合成一个整体。第一个样式<code>color:red</code>，第二个样式<code>color:blue</code>，浏览器会让后者覆盖前者，最终结果还是<code>color:blue</code></p>
+<p> 覆盖的默认规则是后者覆盖前者，但是又一个特殊情况——<code>!important</code></p>
+<p> <img src="http://images.cnitblog.com/blog/138012/201502/062013470937714.png" alt=""></p>
+<p> 虽然<code>color:blue</code>是后来者，但是它没有居上，因为前者<code>color:red</code>跟着<code>!important</code></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#“层叠”的概念"><span class="toc-text">“层叠”的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样式来源"><span class="toc-text">样式来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层叠的规则"><span class="toc-text">层叠的规则</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/08/20/css之解读浏览器默认样式/" class="prev">&larr; Prev post css之解读浏览器默认样式</a>
+  
+
+  
+
+  
+    <a href="/2016/08/13/学会使用Sublime Text Snippets提高编码速度/" class="next">Next post 学会使用Sublime Text Snippets提高编码速度 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/08/20/css样式来源与层叠规则/" data-title="css样式来源与层叠规则" data-url="http://www.poetries.top/2016/08/20/css样式来源与层叠规则/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

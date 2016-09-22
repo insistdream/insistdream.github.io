@@ -1,0 +1,404 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="This与arguments
+
+当一个函数运行的时候 函数内部能引用的变量有这么几种
+
+AO
+
+arguments
+this">
+  
+  <title>JavaScript之函数表达式&arguments详解 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/27/JavaScript与Unicode编码/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript与Unicode编码
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/27/JavaScript之捕捉模型与冒泡模型/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript之捕捉模型与冒泡模型
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JavaScript之函数表达式&arguments详解</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-27</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p><code>This</code>与<code>arguments</code></p>
+</li>
+<li><p>当一个函数运行的时候 函数内部能引用的变量有这么几种</p>
+</li>
+<li><p><code>AO</code></p>
+</li>
+<li><code>arguments</code></li>
+<li><p><code>this</code></p>
+<a id="more"></a></li>
+<li><p>对于<code>arguments</code>和<code>this</code>函数都有自己的<code>arguments</code>和<code>this</code>且不进行链式查找</p>
+</li>
+<li><p><strong><code>arguments</code>是什么？</strong></p>
+<ul>
+<li>答：<code>arguments</code>是收到的实参的副本 在词法分析中 </li>
+<li>首先形参形成<code>AO</code>属性 值为<code>undefined</code></li>
+<li>当实参传来时 再修改<code>AO</code>的相应属性  </li>
+<li>并把收到的实参收集起来放到一个<code>arguments</code>对象里面  <code>t(a,b,c){}</code>为例：调用 时  <code>t(1,2,3,4,5)</code>个参数  此时<code>AO</code>属性只有<code>a,b,c</code>三个属性 但是<code>arguments</code>有<code>1,2,3,4,5</code>所有的值</li>
+</ul>
+</li>
+<li><p>对于超出形参个数的实参可以通过argument来获得</p>
+</li>
+</ul>
+<ul>
+<li><code>argument</code>的索引从<code>0 1 2..</code>递增 与实参一一对应  </li>
+<li><p><code>argument.length</code>属性代表实参个数</p>
+<ul>
+<li><code>arguments</code>一定不是数组，但是长得像数组的一个对象而已 虽然也有<code>length</code>属性 </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><code>arguments</code>每个函数都有 因此只会在内部找自身的<code>argument</code> 无法引用到外部的<code>arguments</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params">a,b,c</span>)</span>&#123;<span class="comment">//参数实际来AO的属性 有几个形参 就形成几个AO属性   arguments就代表这个函数的额参数</span></span><br><span class="line">	<span class="built_in">console</span>.log(a);<span class="comment">//1</span></span><br><span class="line">	<span class="built_in">console</span>.log(b);<span class="comment">//2</span></span><br><span class="line">	<span class="built_in">console</span>.log(c);<span class="comment">//3</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);<span class="comment">//1</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">1</span>]);<span class="comment">//2</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">2</span>]);<span class="comment">//3</span></span><br><span class="line"></span><br><span class="line">	a = <span class="number">90</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);<span class="comment">//90</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);<span class="comment">//90  互为副本 arguments有一个好处 它接收的实际是你传过来的参数 arguments接收的是所有的实参</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">3</span>]);<span class="comment">//4</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">4</span>]);<span class="comment">//5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">t(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//利用 argument的特点完成其他语言的函数重载</span></span><br><span class="line"><span class="comment">//求圆形面积 矩形面积 三角形面积</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">arguments</span>.length ==<span class="number">1</span>)&#123;</span><br><span class="line">			alert(<span class="number">3.14</span>*<span class="built_in">arguments</span>[<span class="number">0</span>]*<span class="built_in">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">arguments</span>.length ==<span class="number">2</span>)&#123;</span><br><span class="line">			alert(<span class="built_in">arguments</span>[<span class="number">0</span>]*<span class="built_in">arguments</span>[<span class="number">1</span>]);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">arguments</span>.length ==<span class="number">3</span>)&#123;</span><br><span class="line">			alert(<span class="built_in">arguments</span>[<span class="number">0</span>]+<span class="built_in">arguments</span>[<span class="number">1</span>]+<span class="built_in">arguments</span>[<span class="number">2</span>]);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">area(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">t</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> age = <span class="number">22</span>;<span class="comment">//age在链的AO上</span></span><br><span class="line">	alert(<span class="built_in">arguments</span>[<span class="number">0</span>]);<span class="comment">//1</span></span><br><span class="line">	alert(<span class="built_in">arguments</span>[<span class="number">1</span>]);<span class="comment">//2</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="built_in">arguments</span>[<span class="number">0</span>]);<span class="comment">//a</span></span><br><span class="line">		alert(<span class="built_in">arguments</span>[<span class="number">1</span>]);<span class="comment">//undefined 此时这个argument不会找到上面的arguments[1]去  只有Ao才会按照链来查找 argument不会按照链查找</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	d(<span class="string">'a'</span>);</span><br><span class="line">&#125;</span><br><span class="line">t(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/27/JavaScript与Unicode编码/" class="prev">&larr; Prev post JavaScript与Unicode编码</a>
+  
+
+  
+
+  
+    <a href="/2016/07/27/JavaScript之捕捉模型与冒泡模型/" class="next">Next post JavaScript之捕捉模型与冒泡模型 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/07/27/JavaScript之函数表达式&arguments详解/" data-title="JavaScript之函数表达式&arguments详解" data-url="http://www.poetries.top/2016/07/27/JavaScript之函数表达式&arguments详解/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

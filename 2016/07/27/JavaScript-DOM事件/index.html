@@ -1,0 +1,420 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="DOM 事件就是指 当页面上发生某一件事的时候激发某一个函数 相当监听/触发设备
+
+比如：
+
+元素被单击时 onclick
+元素失去焦点时    onblur
+表单被提交时，用onsubmit">
+  
+  <title>JavaScript-DOM事件 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/27/JavaScript之面向对象中的静态方法-静态属性/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript之面向对象中的静态方法-静态属性
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/27/JavaScript之IE,火狐兼容事件对象/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript之IE,火狐兼容事件对象
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JavaScript-DOM事件</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-27</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li>DOM 事件就是指 当页面上发生某一件事的时候激发某一个函数 相当监听/触发设备</li>
+</ul>
+<p><strong>比如：</strong></p>
+<ul>
+<li>元素被单击时 <code>onclick</code></li>
+<li>元素失去焦点时    <code>onblur</code></li>
+<li>表单被提交时，用<code>onsubmit</code><a id="more"></a></li>
+<li><p><strong>DOM事件如何声明？</strong></p>
+<ul>
+<li>直接在元素标签中声明 <code>&lt;input type=&#39;button&#39; onclick=&quot;&quot;&gt;</code></li>
+<li>以事件属性附上一个函数变量：例如<code>inputobj.onclick = 一个函数;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="主要的DOM事件：（可以归为3类）"><a href="#主要的DOM事件：（可以归为3类）" class="headerlink" title="- 主要的DOM事件：（可以归为3类）"></a>- <strong>主要的DOM事件：（可以归为3类）</strong></h2><ul>
+<li>页面上的变化引起的 比如 失去焦点 关闭页面</li>
+<li>鼠标变化引起的 比如 鼠标单击 鼠标经过</li>
+<li><p>键盘事件</p>
+<p>其中<code>onsubmit</code>比较特殊 ：</p>
+<p>在<code>&lt;form onsubmit=&#39;return 函数名&#39;&gt;</code>这样函数<code>return false</code>时 才能阻拦表单的提交行为 </p>
+</li>
+</ul>
+<h2 id="鼠标事件："><a href="#鼠标事件：" class="headerlink" title="- 鼠标事件："></a>- <strong>鼠标事件：</strong></h2><pre><code>-    `onclick` 当单击时
+-    `onmouseOver` 当经过时
+-    `onMouseDown` 当鼠标按下时
+-    `onMouserUp` 当鼠标抬起时
+-    `onMouseMove` 当鼠标移动时
+</code></pre><h2 id="键盘事件："><a href="#键盘事件：" class="headerlink" title="-  键盘事件："></a>-  <strong>键盘事件：</strong></h2><pre><code>-    `onchange `当内容被改变时[重要]
+-    `onSelect` 当内容被选中时
+-    `onkeydown `当键盘按下时
+-    `onkeyup` 当键盘抬起时
+-    `onSubmit `当表单提交时[重要]
+-    `onReset `当表单重置时
+</code></pre><h2 id="页面事件："><a href="#页面事件：" class="headerlink" title="  - 页面事件："></a>  - <strong>页面事件：</strong></h2><pre><code>-    `onblur` 当失去焦点时
+-    `onfocus `当获得焦点时
+-    `onload` 当页面加载时
+-    `onunload` 当页面关闭时
+</code></pre><ul>
+<li><strong>onblur失去焦点</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">value</span>=<span class="string">""</span> <span class="attr">onblur</span>=<span class="string">"t1();"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">onfocus</span>=<span class="string">"t2();"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//失去焦点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> con = <span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span>(con == <span class="string">''</span>)&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value = prompt(<span class="string">'请输入邮件地址：'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得焦点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> con = <span class="built_in">document</span>.getElementsByName(<span class="string">'username'</span>)[<span class="number">0</span>];</span><br><span class="line">    con.style.border = <span class="string">'2px solid red'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>onload</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"t1();"</span> <span class="attr">onunload</span>=<span class="string">"t2();"</span>&gt;</span><span class="comment">&lt;!--  onload写在页面的开始位置 --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">value</span>=<span class="string">""</span> &gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> con = <span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value=<span class="string">'请填写您的email'</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"您真的要关闭吗"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>onmouserover</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onmouseover</span>=<span class="string">"t3();"</span>  <span class="attr">onmouseout</span>=<span class="string">"t4();"</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"baidu"</span>&gt;</span></span><br><span class="line">    百度详细介绍</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./images/logo.png"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"xueli"</span> <span class="attr">onchange</span>=<span class="string">"t5();"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择学历<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"大学"</span> &gt;</span>大学<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"中学"</span>&gt;</span>中学<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"初中"</span>&gt;</span>初中<span class="tag">&lt;/<span class="name">option</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"小学"</span>&gt;</span>小学<span class="tag">&lt;/<span class="name">option</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">onsubmit</span>=<span class="string">"return t6();"</span>&gt;</span> <span class="comment">&lt;!-- onsubmit 和return false结合才能阻止提交  地址栏没变化说明阻拦 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">value</span>=<span class="string">""</span> &gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交 "</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">    #img&#123;</span><br><span class="line">        display: none;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	alert(<span class="string">'来了'</span>);</span><br><span class="line"> 	</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">t2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	alert(<span class="string">'走了'</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">t3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">var</span> bd = <span class="built_in">document</span>.getElementById(<span class="string">'baidu'</span>);</span><br><span class="line"> 	bd.style.display = <span class="string">'block'</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">t4</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	 <span class="keyword">var</span> bd = <span class="built_in">document</span>.getElementById(<span class="string">'baidu'</span>);</span><br><span class="line"> 	bd.style.display = <span class="string">'none'</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">t5</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	<span class="keyword">var</span> sel = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'select'</span>)[<span class="number">0</span>];</span><br><span class="line"> 	<span class="comment">// alert(sel.value);</span></span><br><span class="line"> 	<span class="keyword">if</span>(sel.value == <span class="string">''</span>)&#123;</span><br><span class="line"> 		alert(<span class="string">'至少选择一个'</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">t6</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 	 <span class="keyword">var</span> con = <span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value;</span><br><span class="line"> 	<span class="keyword">if</span>(con == <span class="string">''</span>)&#123;</span><br><span class="line"> 			<span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value = prompt(<span class="string">'请输入邮件地址：'</span>);</span><br><span class="line"> 			<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//和67行结合才能阻拦提交</span></span><br><span class="line"> 		&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要的DOM事件：（可以归为3类）"><span class="toc-text">- 主要的DOM事件：（可以归为3类）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标事件："><span class="toc-text">- 鼠标事件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘事件："><span class="toc-text">-  键盘事件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面事件："><span class="toc-text">  - 页面事件：</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/27/JavaScript之面向对象中的静态方法-静态属性/" class="prev">&larr; Prev post JavaScript之面向对象中的静态方法-静态属性</a>
+  
+
+  
+
+  
+    <a href="/2016/07/27/JavaScript之IE,火狐兼容事件对象/" class="next">Next post JavaScript之IE,火狐兼容事件对象 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/07/27/JavaScript-DOM事件/" data-title="JavaScript-DOM事件" data-url="http://www.poetries.top/2016/07/27/JavaScript-DOM事件/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

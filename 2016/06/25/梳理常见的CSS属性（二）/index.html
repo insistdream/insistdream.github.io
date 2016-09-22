@@ -1,0 +1,840 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="">
+  
+  <title>梳理常见的CSS属性（二） [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/06/26/Ubuntu下安裝-Zsh-及-Oh-my-zsh/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Ubuntu下安裝 Zsh 及 Oh-my-zsh
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/06/25/css常用属性梳理（一）/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css常用属性梳理（一）
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>梳理常见的CSS属性（二）</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-06-25</span>
+      
+        <span id = "post-title-updated">Updated at 2016-09-19</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/CSS/">CSS</a>
+      
+      </span>
+      
+    </p>
+    
+    <hr>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>一、CSS 文字属性</strong></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">语 言</td>
+<td style="text-align:left">功  能</td>
+</tr>
+<tr>
+<td style="text-align:left">color : #999999;</td>
+<td style="text-align:left">文字颜色</td>
+</tr>
+<tr>
+<td style="text-align:left">font-family:宋体,sans-serif;</td>
+<td style="text-align:left">文字字体</td>
+</tr>
+<tr>
+<td style="text-align:left">font-size:9pt;</td>
+<td style="text-align:left">文字大小</td>
+</tr>
+<tr>
+<td style="text-align:left">font-style:itelic;</td>
+<td style="text-align:left">文字斜体</td>
+</tr>
+<tr>
+<td style="text-align:left">font-variant:small-caps;</td>
+<td style="text-align:left">小字体</td>
+</tr>
+<tr>
+<td style="text-align:left">letter-spacing:1pt;</td>
+<td style="text-align:left">字间距离</td>
+</tr>
+<tr>
+<td style="text-align:left">line-height : 200%;</td>
+<td style="text-align:left">设置行高</td>
+</tr>
+<tr>
+<td style="text-align:left">font-weight:bold;</td>
+<td style="text-align:left">文字粗体</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:sub;</td>
+<td style="text-align:left">下标字</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:super;</td>
+<td style="text-align:left">上标字</td>
+</tr>
+<tr>
+<td style="text-align:left">text-decoration:line-through;</td>
+<td style="text-align:left">加删除线</td>
+</tr>
+<tr>
+<td style="text-align:left">text-decoration:overline;</td>
+<td style="text-align:left">加顶线</td>
+</tr>
+<tr>
+<td style="text-align:left">text-decoration:underline;</td>
+<td style="text-align:left">加下画线</td>
+</tr>
+<tr>
+<td style="text-align:left">text-decoration:none;</td>
+<td style="text-align:left">删除链接下画线</td>
+</tr>
+<tr>
+<td style="text-align:left">text-transform:capitalize;</td>
+<td style="text-align:left">首字大写</td>
+</tr>
+<tr>
+<td style="text-align:left">text-transform:uppercase;</td>
+<td style="text-align:left">英文大写</td>
+</tr>
+<tr>
+<td style="text-align:left">text-transform:lowercase;</td>
+<td style="text-align:left">英文小写</td>
+</tr>
+<tr>
+<td style="text-align:left">text-align:right;</td>
+<td style="text-align:left">文字右对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">text-align:left;</td>
+<td style="text-align:left">文字左对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">text-align:center;</td>
+<td style="text-align:left">文字居中对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">text-align:justify;</td>
+<td style="text-align:left">文字两端对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>vertical-align属性</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:top;</td>
+<td style="text-align:left">垂直向上对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:bottom;</td>
+<td style="text-align:left">垂直向下对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:middle;</td>
+<td style="text-align:left">垂直居中对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:text-top;</td>
+<td style="text-align:left">文字垂直向上对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">vertical-align:text-bottom;</td>
+<td style="text-align:left">文字垂直向下对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>二、CSS 项目符号</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:none;</td>
+<td style="text-align:left">不编号</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:decimal;</td>
+<td style="text-align:left">阿拉伯数字</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:lower-roman;</td>
+<td style="text-align:left">小写罗马数字</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:upper-roman;</td>
+<td style="text-align:left">大写罗马数字</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:lower-alpha;</td>
+<td style="text-align:left">小写英文字母</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:upper-alpha;</td>
+<td style="text-align:left">大写英文字母</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:disc;</td>
+<td style="text-align:left">实心圆形符号</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:circle;</td>
+<td style="text-align:left">空心圆形符号</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-type:square;</td>
+<td style="text-align:left">实心方形符号</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-image:url(/dot.gif)</td>
+<td style="text-align:left">图片式符号</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-position:outside;</td>
+<td style="text-align:left">凸排</td>
+</tr>
+<tr>
+<td style="text-align:left">list-style-position:inside;</td>
+<td style="text-align:left">缩进</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>三、CSS 背景样式</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">background-color:#F5E2EC;</td>
+<td style="text-align:left">背景颜色</td>
+</tr>
+<tr>
+<td style="text-align:left">background:transparent;</td>
+<td style="text-align:left">透视背景</td>
+</tr>
+<tr>
+<td style="text-align:left">background-image:url(image/bg.gif);</td>
+<td style="text-align:left">背景图片</td>
+</tr>
+<tr>
+<td style="text-align:left">background-attachment:fixed;</td>
+<td style="text-align:left">浮水印固定背景</td>
+</tr>
+<tr>
+<td style="text-align:left">background-repeat:repeat;</td>
+<td style="text-align:left">重复排列-网页默认</td>
+</tr>
+<tr>
+<td style="text-align:left">background-repeat:no-repeat;</td>
+<td style="text-align:left">不重复排列</td>
+</tr>
+<tr>
+<td style="text-align:left">background-repeat:repeat-x;</td>
+<td style="text-align:left">在 X 轴重复排列</td>
+</tr>
+<tr>
+<td style="text-align:left">background-repeat:repeat-y;</td>
+<td style="text-align:left">在 Y 轴重复排列</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:90% 90%;</td>
+<td style="text-align:left">背景图片 X 与 Y 轴的位置</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:top;</td>
+<td style="text-align:left">向上对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:buttom;</td>
+<td style="text-align:left">向下对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:left;</td>
+<td style="text-align:left">向左对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:right;</td>
+<td style="text-align:left">向右对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">background-position:center;</td>
+<td style="text-align:left">居中对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>四、CSS 链接属性</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a  所有超链接</td>
+</tr>
+<tr>
+<td style="text-align:left">a:link</td>
+<td style="text-align:left">超链接文字格式</td>
+</tr>
+<tr>
+<td style="text-align:left">a:visited</td>
+<td style="text-align:left">浏览过的链接文字格式</td>
+</tr>
+<tr>
+<td style="text-align:left">a:active</td>
+<td style="text-align:left">按下链接的格式</td>
+</tr>
+<tr>
+<td style="text-align:left">a:hover</td>
+<td style="text-align:left">鼠标转到链接</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:crosshair</td>
+<td style="text-align:left">十字体</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:s-resize</td>
+<td style="text-align:left">箭头朝下</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:help</td>
+<td style="text-align:left">加一问号</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:w-resize</td>
+<td style="text-align:left">箭头朝左</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:n-resize</td>
+<td style="text-align:left">箭头朝上</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:ne-resize</td>
+<td style="text-align:left">箭头朝右上</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:nw-resize</td>
+<td style="text-align:left">箭头朝左上</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:text</td>
+<td style="text-align:left">文字 I 型</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:se-resize</td>
+<td style="text-align:left">箭头斜右下</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:sw-resize</td>
+<td style="text-align:left">箭头斜左下</td>
+</tr>
+<tr>
+<td style="text-align:left">cursor:wait</td>
+<td style="text-align:left">漏斗</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>五、CSS 边框属性</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">border-top:1px solid #6699cc;</td>
+<td style="text-align:left">上框线</td>
+</tr>
+<tr>
+<td style="text-align:left">border-bottom:1px solid #6699cc;</td>
+<td style="text-align:left">下框线</td>
+</tr>
+<tr>
+<td style="text-align:left">border-left:1px solid #6699cc;</td>
+<td style="text-align:left">左框线</td>
+</tr>
+<tr>
+<td style="text-align:left">border-right:1px solid #6699cc;</td>
+<td style="text-align:left">右框线</td>
+</tr>
+<tr>
+<td style="text-align:left">solid</td>
+<td style="text-align:left">实线框 2+6010</td>
+</tr>
+<tr>
+<td style="text-align:left">47dotted</td>
+<td style="text-align:left">虚线框</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:left">双线框</td>
+</tr>
+<tr>
+<td style="text-align:left">groove</td>
+<td style="text-align:left">立体内凸框</td>
+</tr>
+<tr>
+<td style="text-align:left">ridge</td>
+<td style="text-align:left">立体浮雕框</td>
+</tr>
+<tr>
+<td style="text-align:left">inset</td>
+<td style="text-align:left">凹框</td>
+</tr>
+<tr>
+<td style="text-align:left">outset</td>
+<td style="text-align:left">凸框</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>六、CSS 表单</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;input type=&quot;text&quot; name=&quot;T1&quot; size=&quot;15&quot;&gt;</code></td>
+<td style="text-align:left">文本域</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;input type=&quot;submit&quot; value=&quot;submit&quot; name =&quot;B1&quot;&gt;</code></td>
+<td style="text-align:left">按钮</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;input type=&quot;checkbox&quot; name=&quot;C1&quot;&gt;</code></td>
+<td style="text-align:left">复选框</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;input type=&quot;radio&quot; value=&quot;V1&quot; checked name=&quot;R1&quot;&gt;</code></td>
+<td style="text-align:left">单选按钮</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;select size=&quot;1&quot; name=&quot;D1&quot;&gt;&lt;option&gt;选项1&lt;/option&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;option&gt;选项 2&lt;/option&gt;&lt;/select&gt;</code></td>
+<td style="text-align:left">列表菜单</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;textarea rows=&quot;1&quot; name=&quot;1&quot;  cols=&quot;15&quot;&gt;</code></td>
+<td style="text-align:left">多行文本域</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>七、CSS 边界样式</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">margin-top:10px;</td>
+<td style="text-align:left">上边界</td>
+</tr>
+<tr>
+<td style="text-align:left">margin-right:10px;</td>
+<td style="text-align:left">右边界值</td>
+</tr>
+<tr>
+<td style="text-align:left">margin-bottom:10px;</td>
+<td style="text-align:left">下边界值</td>
+</tr>
+<tr>
+<td style="text-align:left">margin-left:10px;</td>
+<td style="text-align:left">左边界值</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>八、CSS 边框空白</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">padding-top:10px;</td>
+<td style="text-align:left">上边框留空白</td>
+</tr>
+<tr>
+<td style="text-align:left">padding-right:10px;</td>
+<td style="text-align:left">右边框留空白</td>
+</tr>
+<tr>
+<td style="text-align:left">padding-bottom:10px;</td>
+<td style="text-align:left">下边框留空白</td>
+</tr>
+<tr>
+<td style="text-align:left">padding-left:10px;</td>
+<td style="text-align:left">左边框留空白</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p><img src="http://7xq6al.com1.z0.glb.clouddn.com/css%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E6%80%BB%E7%BB%93.png" alt="css常用属性思维导图总结"></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#附录"><span class="toc-text">附录</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/06/26/Ubuntu下安裝-Zsh-及-Oh-my-zsh/" class="prev">&larr; Prev post Ubuntu下安裝 Zsh 及 Oh-my-zsh</a>
+  
+
+  
+
+  
+    <a href="/2016/06/25/css常用属性梳理（一）/" class="next">Next post css常用属性梳理（一） &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      <div class="ds-thread" data-thread-key="2016/06/25/梳理常见的CSS属性（二）/" data-title="梳理常见的CSS属性（二）" data-url="http://www.poetries.top/2016/06/25/梳理常见的CSS属性（二）/"></div>
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2016
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"poetry"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/images/avatar.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
