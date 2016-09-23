@@ -22,9 +22,9 @@ social:
 # Google analytics
 google_analytics:
 # Baidu tongji
-baidu_analytics:
+baidu_analytics: 21bab597276b9eac9d21737939047226
 # Duoshuo
-duoshuo_shortname:
+duoshuo_shortname: poetry
 # Disqus
 disqus_shortname:
 # Uyan
@@ -114,7 +114,7 @@ unsplashConfig:
   gravity: 'north' # north, east, south, west, center
   # greyscale: true
 
-avatar: http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg
+avatar: http://www.poetries.top/images/avatar.jpg
 
 # do not like fancybox, set this as false, this will turn it off
 fancybox: true
