@@ -57,6 +57,7 @@ a:hover {
   margin-top: -200px;
   width: 960px;
   margin-left: -480px;
+  opacity:0.4;
 }
 @media (max-width: 960px) {
   .random-center {
