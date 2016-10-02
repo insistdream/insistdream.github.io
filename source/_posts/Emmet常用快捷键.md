@@ -9,7 +9,7 @@ categories: 工欲善其事必先利其器
 ---
 
 - `div+div>p>span+em^bq`
-
+<!--more-->
 ```html
 <div></div>
 <div>
@@ -28,7 +28,7 @@ categories: 工欲善其事必先利其器
 <blockquote></blockquote>
 ```
 
-<!--more-->
+
 
 - `div>(header>ul>li*2>a)+footer>p`
 
@@ -733,12 +733,14 @@ background-size:cover;
 
 - `c`
 ```css
-```
 color:#000;
+```
+
 - `c:r`
 ```css
 color:rgb(0, 0, 0);
 ```
+
 - `c:ra`
 ```css
 color:rgba(0, 0, 0, .5);

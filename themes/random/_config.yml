@@ -1,6 +1,6 @@
 ﻿
 # html lang
-language: en
+language: zh-CN
 
 # main menu navigation
 menu:
@@ -22,9 +22,9 @@ social:
 # Google analytics
 google_analytics:
 # Baidu tongji
-baidu_analytics: 21bab597276b9eac9d21737939047226
+baidu_analytics:
 # Duoshuo
-duoshuo_shortname: 
+duoshuo_shortname:
 # Disqus
 disqus_shortname:
 # Uyan
@@ -114,7 +114,7 @@ unsplashConfig:
   gravity: 'north' # north, east, south, west, center
   # greyscale: true
 
-avatar: http://www.poetries.top/images/avatar.jpg
+avatar: https://avatars2.githubusercontent.com/u/16177576?v=3&s=466
 
 # do not like fancybox, set this as false, this will turn it off
 fancybox: true

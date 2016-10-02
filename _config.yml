@@ -63,14 +63,14 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: random
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: # 同时部署到github和coding
-    github: https://github.com/insistdream/insistdream.github.io.git
+    github: https://github.com/poetries/poetries.github.io.git
     # coding: git@git.coding.net:poetry/poetry.git,master
 
 
@@ -112,7 +112,7 @@ plugins:
 
 avatar: /images/avatar.jpg
 
-duoshuo_shortname: 
+duoshuo_shortname: poetry
 
 baidu_analytics: 40b1f89aa80f2527b3db779c6898c879
 
