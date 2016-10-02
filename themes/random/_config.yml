@@ -114,6 +114,7 @@ unsplashConfig:
   gravity: 'north' # north, east, south, west, center
   # greyscale: true
 
+
 avatar: http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg
 
 # do not like fancybox, set this as false, this will turn it off
