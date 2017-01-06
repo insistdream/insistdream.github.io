@@ -1,0 +1,415 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="1. 定义
+
+property（元素属性）：DOM 节点是一个对象，因此，可以添加自定义的属性以及方法。property 的值可以是任何的数据类型，对大小写敏感。自定义的property不会出现在 html 中，只存在 JavaSctipt 中。
+attribute（标签属性）：attribute 只能是字符串，大小写不敏感，出现在 innerHTML 中，通过类数组attributes可以...">
+  
+  <title>JavaScript中property和attribute的区别 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/27/jQuery与原生JS的DOM操作对比/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        jQuery与原生JS的DOM操作对比
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/27/JavaScript之事件的中断传播与行为阻止/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript之事件的中断传播与行为阻止
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JavaScript中property和attribute的区别</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-27</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p><strong>1. 定义</strong></p>
+<ul>
+<li><code>property</code>（元素属性）：<code>DOM</code> 节点是一个对象，因此，可以添加自定义的属性以及方法。<code>property</code> 的值可以是任何的数据类型，对大小写敏感。自定义的<code>property</code>不会出现在 <code>html</code> 中，只存在 <code>JavaSctipt</code> 中。<ul>
+<li><code>attribute</code>（标签属性）：<code>attribute</code> 只能是字符串，大小写不敏感，出现在 <code>innerHTML</code> 中，通过类数组<code>attributes</code>可以罗列所有的 <code>attribute</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>2. 相同之处</strong></p>
+<a id="more"></a>
+<ul>
+<li>标准 <code>DOM</code> 的 <code>properties</code>（元素属性）与<code>attributes</code>（标签属性）是同步的。公认的 <code>attributes</code>（标签属性）会添加到<code>DOM</code>对象 <code>property</code>（元素属性）上，如 <code>id、style、className、disabled、checked</code>等。这时候直接操作 <code>property  (el. checked)</code> 或者使用 <code>el.getAttribute() / el.setAttribute()</code>效果一致。但是参数不一定相同，如：<code>el.className 与 el.getAttribute(&#39;class&#39;)</code></li>
+</ul>
+</li>
+<li><p><strong>3. 不同之处</strong></p>
+</li>
+<li><p>对于有些标准的特性的操作，<code>el.getAttribute 与 el.property</code>获取的值存在差异性。如: `href、src、value、style、onclic 等</p>
+</li>
+<li><p><code>Demo1：</code>el.getAttribute 获取的是 href 的实际值，el.property 获取的是完整的 url</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alEl.href = <span class="string">'/'</span>;</div><div class="line">alert(alEl.getAttribute(<span class="string">'href'</span>));  <span class="comment">// '/'</span></div><div class="line">alert(alEl.href);  				 <span class="comment">// full URL</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Demo2：</code>el.property 可以从 el.setAttribute 获得同步</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">inputEl.setAttribute(<span class="string">'value'</span>, <span class="string">'hello'</span>);</div><div class="line">alert(inputEl.value );	 		    <span class="comment">// 'hello' -- property changed!</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Demo3： el.getAttribute 不能从 el.property 获得同步</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">inputEl.value = <span class="string">'bye'</span>;</div><div class="line">alert(inputEl.getAttribute(<span class="string">'value'</span>)); <span class="comment">// 'hello' – attribute not changed!</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Demo4：el.getAttribute 只能获取输入框的原始值，el.property 可以获取输入框修改后值</li>
+</ul>
+<p>用户输入 ‘good’，inputEl.value 获得 ‘good’，inputEl.getAttribute(‘value’) 获得原始值 ‘hello’。<br>可以利用 inputEl.value == inputEl.getAttribute(‘value’) 检验 input 是否变化</p>
+<ul>
+<li>Demo5：checkbox 未选中时 – el.getAttribute 返回 null，el.property 返回 false</li>
+</ul>
+<p>checkbox 选中时 – el.getAttribute 仍返回 null，el.property 返回 ture<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alert(checkboxEl.checked); 					<span class="comment">//  boolean true</span></div><div class="line">alert(checkboxEl.getAttribute(<span class="string">'checked'</span>)); 		<span class="comment">//  object null</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>Demo6：style – el.getAttribute 返回 string, el.property 返回 object</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alert(divEl.style); 					<span class="comment">// 'width:200px;height:200px;'</span></div><div class="line">alert(divEl.getAttribute(<span class="string">'style'</span>) ) 	<span class="comment">//  [object CSSStyleDeclaration]</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>4. 浏览器兼容性上的差别</strong></p>
+<ul>
+<li>1)<code>IE&lt;9</code> 浏览器中，el.property 和 el.getAttribute 可以相互访问自定义属性</li>
+<li>2)<code>IE&lt;8</code>（包括IE8种的IE7兼容模式），el.property 和 el.getAttribute 相同</li>
+<li>因为 <code>attribute</code> 对大小写不敏感，在这种情况下，用 el.getAttribute 访问特性时，浏览器会选择第一次出现的值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.abba = <span class="number">1</span> <span class="comment">// assign property (now can read it by getAttribute)</span></div><div class="line"><span class="built_in">document</span>.body.ABBA = <span class="number">5</span> <span class="comment">// assign property with another case</span></div><div class="line"><span class="comment">// must get a property named 'ABba' in case-insensitive way.</span></div><div class="line">alert( <span class="built_in">document</span>.body.getAttribute(<span class="string">'ABba'</span>) ) <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>5. 优先选择 property</strong></p>
+<ul>
+<li><p>在实际应用中，98% 的 DOM 操作都是使用 properties。</p>
+</li>
+<li><p>总结：只有两种情形需要使用<code>attributes ：</code></p>
+<ul>
+<li>1) 自定义的 <code>HTML attributes</code>，因为它并不同步到<code>DOM property</code></li>
+<li>2) 访问内置的<code>HTML attributes</code>（设置的初始值），这些 <code>attribute</code>不能从<code>property</code> 同步过来。例如<code>input</code>标签的 value 值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/27/jQuery与原生JS的DOM操作对比/" class="prev">&larr; Prev post jQuery与原生JS的DOM操作对比</a>
+  
+
+  
+
+  
+    <a href="/2016/07/27/JavaScript之事件的中断传播与行为阻止/" class="next">Next post JavaScript之事件的中断传播与行为阻止 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,395 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="一、 _config.yml配置">
+  
+  <title>一键更新Hexo到github和coding [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/02/Hexo持续集成自动部署到github/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Hexo持续集成自动部署到github
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/06/26/Ubuntu下安裝-Zsh-及-Oh-my-zsh/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Ubuntu下安裝 Zsh 及 Oh-my-zsh
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>一键更新Hexo到github和coding</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-02</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Hexo/">Hexo</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/Hexo/">Hexo</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="一、-config-yml配置"><a href="#一、-config-yml配置" class="headerlink" title="一、 _config.yml配置"></a><strong>一、 _config.yml配置</strong></h3><a id="more"></a>
+<p>想要同时部署到2个平台，就要修改博客根目录下面的<code>_config.yml</code>文件中的deploy如下<br>根据Hexo官方文档需要修改成下面的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  message: [message]</div><div class="line">  repo:</div><div class="line">    github: &lt;repository url&gt;,[branch]</div><div class="line">    gitcafe: &lt;repository url&gt;,[branch]</div></pre></td></tr></table></figure>
+<p>我的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: # 同时部署到github和coding</div><div class="line">    github: https://github.com/poetries/poetries.github.io.git,master</div><div class="line">    coding: git@git.coding.net:poetry/poetry.git,master</div></pre></td></tr></table></figure>
+<p>提交采用的SSH密钥，这个方法有个好处，提交的时候不用输入用户名和密码</p>
+<hr>
+<h3 id="二、coding上创建一个新项目"><a href="#二、coding上创建一个新项目" class="headerlink" title="二、coding上创建一个新项目"></a><strong>二、coding上创建一个新项目</strong></h3><p>创建后进入项目的代码模块，获取到这个项目的ssh地址</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-3cbdade49c4ed7ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="三、同步本地hexo到coding上"><a href="#三、同步本地hexo到coding上" class="headerlink" title="三、同步本地hexo到coding上"></a><strong>三、同步本地hexo到coding上</strong></h3><p>把获取到了ssh配置在上面的_config.yml文件中的deploy下，如果是第一次使用coding的话，需要设置SSH公钥，生成的方法可以参考<a href="https://coding.net/help/doc/git/ssh-key.html" target="_blank" rel="external">coding帮助中心</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-e9759ccb34032256.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p>本地打开 id_rsa.pub 文件，复制其中全部内容，填写到SSH_RSA公钥key下的一栏，公钥名称可以随意起名字。完成后点击“添加”，然后输入密码或动态码即可添加完成</p>
+<hr>
+<p>添加后，在<code>git bash</code>命令输入：</p>
+<p><code>ssh -T git@git.coding.net</code></p>
+<p>如果得到下面提示就表示公钥添加成功了：</p>
+<p><code>Coding.net Tips : [Hello ! You&#39;ve conected to Coding.net by SSH successfully! ]</code></p>
+<p>最后使用部署命令就能把博客同步到coding上面：</p>
+<p><code>hexo deploy -g</code></p>
+<hr>
+<h3 id="四、pages服务方式部署"><a href="#四、pages服务方式部署" class="headerlink" title="四、pages服务方式部署"></a><strong>四、pages服务方式部署</strong></h3><p>部署博客方式有两种，第一种就是pages服务的方式，也推荐这种方式，因为可以绑定域名，而第二种演示的方式必须升级会员才能绑定自定义域名。pages方式也很简单<br>就是在<code>source/</code>需要创建一个空白文件，至于原因，是因为 coding.net需要这个文件来作为以静态文件部署的标志。就是说看到这个<code>Staticfile</code>就知道按照静态文件来发布</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd source/</div><div class="line">touch Staticfile  #名字必须是Staticfile</div></pre></td></tr></table></figure>
+<p>分支选择master，因为前面配置的分支是<code>master</code>,因此开启之后，也需要是master。然后看起之后就可访问了。</p>
+<p><strong>注意：</strong></p>
+<p>如果你的项目名称跟你coding的用户名一样，比如我的用户是叫tengj,博客项目名也叫tengj<br>那直接访问 poetry.coding.me就能访问博客，否则就要带上项目名：poetry.coding.me/项目名 才能访问<br>推荐项目名跟用户名一样，这样就可以省略项目名了</p>
+<hr>
+<h3 id="五、演示方式部署"><a href="#五、演示方式部署" class="headerlink" title="五、演示方式部署"></a><strong>五、演示方式部署</strong></h3><p>当你把你的静态网站上传到Coding之后，就可以着手部署演示了，Coding的演示平台支持静态网页，所以其实非常简单。在开启演示模式之前，会提醒你没有检测到环境，你直接强制开启就可以了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-665ded40c0fb65bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<ul>
+<li>部署版本我没有填，默认是<code>master</code></li>
+<li>运行环境一定要选择<code>HTML</code></li>
+<li>自动部署要勾上，为后面配置自动部署做准备</li>
+<li>访问域名根据你自己喜爱填写，填好要点急后面的确认按钮</li>
+<li>应用内存也根据自己喜好填写，填好要点急后面的确认按钮</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-dbe1323655714ed7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p>以上都配置好了，就可以按下一键部署的按钮了，部署成功后输入地址：poetry.coding.io就能访问</p>
+<hr>
+<h3 id="六、设置自动部署"><a href="#六、设置自动部署" class="headerlink" title="六、设置自动部署"></a><strong>六、设置自动部署</strong></h3><p>如果你是演示方式的话，就需要设置自动部署，这样才能同步新发布的文章</p>
+<p><strong>要配置WebHook才行</strong></p>
+<ul>
+<li>找到项目设置那边的<code>WebHook</code>,然后点击新建 <code>Hook</code></li>
+<li>第一个输入框中是填你的博客域名，然后在后面加上 <code>/_</code></li>
+<li>第二个输入框是输入一个 <code>token</code> ，我们直接填写 <code></code>就可以了,TOKEN两边的大括号见的空格记得去掉</li>
+<li>回到演示里，在左边的栏目中找到环境变量,变量名填写为 <code>WEBHOOK_TOKEN</code> ，值为 <code></code> ，接着重新启动应用就 ok 了！</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-50b39c29a8ef1785.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1637925-3e1794da1fa2c9c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、-config-yml配置"><span class="toc-text">一、 _config.yml配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、coding上创建一个新项目"><span class="toc-text">二、coding上创建一个新项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、同步本地hexo到coding上"><span class="toc-text">三、同步本地hexo到coding上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、pages服务方式部署"><span class="toc-text">四、pages服务方式部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、演示方式部署"><span class="toc-text">五、演示方式部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、设置自动部署"><span class="toc-text">六、设置自动部署</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/02/Hexo持续集成自动部署到github/" class="prev">&larr; Prev post Hexo持续集成自动部署到github</a>
+  
+
+  
+
+  
+    <a href="/2016/06/26/Ubuntu下安裝-Zsh-及-Oh-my-zsh/" class="next">Next post Ubuntu下安裝 Zsh 及 Oh-my-zsh &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,378 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="window定时器
+
+setIntval(表达式,毫秒)
+clearIntval(定时器对象)
+setTimeout(表达式,毫秒)
+clearTimeout(定时器对象)">
+  
+  <title>JavaScript之定时器 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/27/JavaScript与Unicode编码/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript与Unicode编码
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/27/JavaScript对象/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        JavaScript对象
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>JavaScript之定时器</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-27</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+      </span>
+      
+    </p>
+    
+    <ul>
+<li><p>window定时器</p>
+<ul>
+<li><code>setIntval</code>(表达式,毫秒)<ul>
+<li><code>clearIntval</code>(定时器对象)</li>
+<li><code>setTimeout</code>(表达式,毫秒)</li>
+<li><code>clearTimeout</code>(定时器对象)<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>setTimeout</code>(表达式,毫秒)：是指经过指定时间后执行事件一次</p>
+</li>
+<li><p>清除定时器：</p>
+</li>
+<li><p>在创建定时器的时候 把创建的结果赋给一个定时器变量 比如：<code>var clock = windows.setTimeout()</code>再用<code>cleraTimeout(clock);</code></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定一段时间后执行某一个函数</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		 </div><div class="line">		<span class="built_in">window</span>.location.href = <span class="string">'http:///www.baidu.com'</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">window</span>.setTimeout(<span class="string">'t()'</span>,<span class="number">10</span>*<span class="number">1000</span>);<span class="comment">//setTimeout只是执行一次</span></div><div class="line"></div><div class="line">	<span class="comment">//用setTimeout来实现每隔5秒执行某一个一次  放到函数里面可以做到</span></div></pre></td></tr></table></figure>
+<p><code>setTimeout</code>实现每隔几秒执行一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	 </div><div class="line">	<span class="comment">// window.location.href = 'http:///www.baidu.com';</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">window</span>.setTimeout(<span class="string">'t()'</span>,<span class="number">2</span>*<span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">t();</div></pre></td></tr></table></figure>
+<p><code>setIntval</code>每隔指定时间执行一次事件</p>
+<ul>
+<li>碰到每隔几秒执行一次事件的 推荐用setInterval</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'2秒到'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> clock = <span class="built_in">window</span>.setInterval(<span class="string">'t()'</span>,<span class="number">2000</span>);<span class="comment">//clock命名为了后面消除定时器用到 这个变量是指向定时器</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	clearInterval(clock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/27/JavaScript与Unicode编码/" class="prev">&larr; Prev post JavaScript与Unicode编码</a>
+  
+
+  
+
+  
+    <a href="/2016/07/27/JavaScript对象/" class="next">Next post JavaScript对象 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

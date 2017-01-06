@@ -1,0 +1,497 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="一、前言">
+  
+  <title>非常实用的git命令 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/09/梳理常用的正则表达式/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        梳理常用的正则表达式
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/08/TortoiseSVN的基本安装及使用方法/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        TortoiseSVN的基使用方法
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>非常实用的git命令</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-09</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/VCS/">VCS</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/GitHub/">GitHub</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p><img src="http://images2015.cnblogs.com/blog/385704/201509/385704-20150915155600929-543996061.jpg" alt="enter description here"><br><a id="more"></a></p>
+<hr>
+<h3 id="二、git-branch-和-git-checkout"><a href="#二、git-branch-和-git-checkout" class="headerlink" title="二、git branch 和 git checkout"></a>二、git branch 和 git checkout</h3><ul>
+<li><code>git branch</code> //查看当前分支</li>
+<li><code>git branch -r</code> //列出远程分支</li>
+<li><p><code>git branch -a</code> //列出所有分支</p>
+</li>
+<li><p><code>git branch branchName</code> //创建分支</p>
+</li>
+<li><code>git checkout branchName</code> //切换分支</li>
+<li><p><code>git checkout -b branchName</code> //创建并切换到分支</p>
+</li>
+<li><p><code>git checkout</code>  //后面不跟任何参数，则就是对工作区进行检查</p>
+</li>
+<li><p><code>git checkout --filename</code> //从暂存区中恢复文件(确保filename与branch名称不同)</p>
+</li>
+<li><p><code>git status</code> //查看状态</p>
+</li>
+</ul>
+<hr>
+<h3 id="三、git-clone-和-git-remote"><a href="#三、git-clone-和-git-remote" class="headerlink" title="三、git clone 和 git remote"></a>三、git clone 和 git remote</h3><ul>
+<li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code></li>
+<li><p><code>git clone</code>支持多种协议，除了HTTP(s)以外，还支持SSH、Git、本地文件协议等，下面是一些例子。</p>
+</li>
+<li><p><code>git clone http[s]://example.com/path/to/repo.git/</code></p>
+</li>
+<li><code>git clone ssh://example.com/path/to/repo.git/</code></li>
+<li><code>git clone git://example.com/path/to/repo.git/</code></li>
+<li><code>git clone /opt/git/project.git</code></li>
+<li><code>git clone file:///opt/git/project.git</code></li>
+<li><code>git clone ftp[s]://example.com/path/to/repo.git/</code></li>
+<li><code>git clone rsync://example.com/path/to/repo.git/</code></li>
+</ul>
+<p>SSH协议还有另一种写法</p>
+<ul>
+<li><code>git clone [user@]example.com:path/to/repo.git/</code></li>
+</ul>
+<hr>
+<ul>
+<li><code>git remote</code></li>
+<li><code>git remote -v</code>  //查看远程主机的网址</li>
+<li><code>git remote show &lt;主机名&gt;</code> //查看该主机的详细信息</li>
+<li><code>git remote add &lt;主机名&gt; &lt;网址&gt;</code> //添加远程主机</li>
+<li><code>git remote rm &lt;主机名&gt;</code>  //删除远程主机</li>
+<li><code>git remote rename &lt;原主机名&gt; &lt;新主机名&gt;</code> //重命名远程主机</li>
+</ul>
+<hr>
+<h3 id="四、git-pull-和-git-push"><a href="#四、git-pull-和-git-push" class="headerlink" title="四、git pull 和 git push"></a>四、git pull 和 git push</h3><ul>
+<li><code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></li>
+<li><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></li>
+</ul>
+<ul>
+<li><p><code>git pull origin master:master</code><br>取回origin主机的master分支，与本地的master分支合并</p>
+</li>
+<li><p><code>git push origin master:master</code><br>推送本地的master分支，与origin主机的master分支合并</p>
+</li>
+</ul>
+<ul>
+<li><p><code>git pull origin master</code><br>如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</p>
+</li>
+<li><p><code>git push origin master</code><br>本地的master分支推送到origin主机的master分支。如果后者不存在，则会被新建</p>
+</li>
+</ul>
+<ul>
+<li><p><code>git pull origin</code><br>本地的当前分支自动与对应的origin主机”追踪分支”(remote-tracking branch)进行合并。<br>追踪分支 是 远程的同名分支</p>
+</li>
+<li><p><code>git push origin</code><br>当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略</p>
+</li>
+</ul>
+<ul>
+<li><p><code>git pull</code><br>当前分支自动与唯一一个追踪分支进行合并</p>
+</li>
+<li><p><code>git push</code></p>
+</li>
+</ul>
+<p>当前分支只有一个追踪分支，那么主机名都可以省略</p>
+<hr>
+<h3 id="五、git-merge-和-git-rebase"><a href="#五、git-merge-和-git-rebase" class="headerlink" title="五、git merge 和 git rebase"></a>五、git merge 和 git rebase</h3><ul>
+<li><code>git merge</code><br>用”pull”命令把”origin”分支上的修改拉下来并且和你的修改合并；<br>结果看起来就像一个新的”合并的提交”(merge commit):</li>
+</ul>
+<p><strong>使用 rebase 合并</strong></p>
+<ul>
+<li><code>git checkout mywork</code></li>
+<li><code>git rebase origin</code><br>这些命令会把你的”mywork”分支里的每个提交(commit)取消掉，<br>并且把它们临时 保存为补丁(patch)(这些补丁放到”.<code>git/rebase</code>“目录中),<br>然后把”mywork”分支更新 到最新的”origin”分支，<br>最后把保存的这些补丁应用到”mywork”分支上</li>
+</ul>
+<p>在rebase的过程中，也许会出现冲突(conflict). 在这种情况，<br>Git会停止rebase并会让你去解决 冲突；在解决完冲突后，<br>用”git-add”命令去更新这些内容的索引(index), 然后，你无需执行 <code>git-commit,</code>只要执行<code>:git rebase --continue</code><br>这样git会继续应用(apply)余下的补丁。</p>
+<p>在任何时候，你可以用–abort参数来终止rebase的行动，并且”mywork” 分支会回到rebase开始前的状态。</p>
+<ul>
+<li><code>git rebase --abort</code></li>
+</ul>
+<p><img src="http://images2015.cnblogs.com/blog/385704/201509/385704-20150915155746492-957531481.png" alt="enter description here"></p>
+<hr>
+<h3 id="六、git-log"><a href="#六、git-log" class="headerlink" title="六、git log"></a>六、git log</h3><ul>
+<li><p><code>git log --stat -n 5</code>   // 简单的列出了修改过的文件</p>
+</li>
+<li><p><code>git log -p  -n 5</code>  // 详细的列出修改过的文件，及提交文件的对比</p>
+</li>
+<li><p><code>git log --graph</code> // ASCII 字符串表示的简单图形，形象地展示了每个提交所在的分支及其分化衍合情况</p>
+</li>
+<li><p>git log –all –decorate –graph</p>
+</li>
+<li><p><code>git log --pretty=oneline</code> // 只显示哈希值和提交说明</p>
+</li>
+<li><p>git log –pretty=oneline/short/full/fuller/format:””(格式等)</p>
+</li>
+<li><p><code>git log --name-only</code>  // 仅在提交信息后显示已修改的文件清单</p>
+</li>
+<li><p><code>git log --no-merges</code> // 不显示merge的log</p>
+</li>
+</ul>
+<p><strong>常用的命令：</strong></p>
+<ul>
+<li><p><code>git log --name-status -n 5 --no-merges path/filename</code> // 显示新增、修改、删除的文件清单(不包含merge的log)</p>
+</li>
+<li><p><code>git log --name-status --skip=5 -n 5 --no-merges path/filename</code> // 略过5条,从第6条开始取5条log</p>
+</li>
+</ul>
+<hr>
+<h3 id="七、git-stash"><a href="#七、git-stash" class="headerlink" title="七、git stash"></a>七、git stash</h3><p><strong>保存工作现场</strong></p>
+<ul>
+<li><code>git stash</code>     // 保存工作现场</li>
+</ul>
+<p>do some work</p>
+<ul>
+<li><code>git pop</code> // 返回工作现场</li>
+</ul>
+<ul>
+<li><p><code>git stash list</code> //查看 stash 队列</p>
+</li>
+<li><p><code>git stash pop stash@{num}</code><br>// num就是list中要恢复的工作现场编号<br>// 使用pop命令恢复的工作现场，其对应的stash 在队列中删除</p>
+</li>
+<li><p><code>git stash apply stash@{num}</code><br>// num就是list中要恢复的工作现场编号<br>// 使用apply命令恢复的工作现场，其对应的stash 在队列中不删除</p>
+</li>
+</ul>
+<ul>
+<li><code>git stash clear</code> // 情况 stash 队列</li>
+</ul>
+<hr>
+<h3 id="八、分支合并"><a href="#八、分支合并" class="headerlink" title="八、分支合并"></a>八、分支合并</h3><p><strong>strong text</strong>分支合并：</p>
+<p>1.保持工作目录 <code>clean</code><br>2.<code>git checkout master</code>  //切换到主干<br>3.<code>git merge subscribeQY</code>  //在主干上合并分支<br>4.如果有冲突就解决一下</p>
+<p><code>master push</code>前，在分支上<code>merge master</code><br>然后，在master上，merge 分支，在 <code>push</code></p>
+<hr>
+<h3 id="九、其他"><a href="#九、其他" class="headerlink" title="九、其他"></a>九、其他</h3><ul>
+<li><p>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</p>
+</li>
+<li><p>git fetch origin master<br>取回<code>origin</code>主机的<code>master</code>分支</p>
+</li>
+</ul>
+<h3 id="十、参考资料"><a href="#十、参考资料" class="headerlink" title="十、参考资料"></a>十、参考资料</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">阮一峰Git操作</a></li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、前言"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、git-branch-和-git-checkout"><span class="toc-text">二、git branch 和 git checkout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、git-clone-和-git-remote"><span class="toc-text">三、git clone 和 git remote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、git-pull-和-git-push"><span class="toc-text">四、git pull 和 git push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、git-merge-和-git-rebase"><span class="toc-text">五、git merge 和 git rebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、git-log"><span class="toc-text">六、git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、git-stash"><span class="toc-text">七、git stash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八、分支合并"><span class="toc-text">八、分支合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#九、其他"><span class="toc-text">九、其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十、参考资料"><span class="toc-text">十、参考资料</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/09/梳理常用的正则表达式/" class="prev">&larr; Prev post 梳理常用的正则表达式</a>
+  
+
+  
+
+  
+    <a href="/2016/07/08/TortoiseSVN的基本安装及使用方法/" class="next">Next post TortoiseSVN的基使用方法 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,377 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="签出源代码到本机在本机创建文件夹StartKit，右键点击Checkout，弹出如下图的窗体：">
+  
+  <title>TortoiseSVN的基使用方法 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/07/09/非常实用的git命令/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        非常实用的git命令
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/07/08/前端开发面试题/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        前端开发面试题
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>TortoiseSVN的基使用方法</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-08</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/VCS/">VCS</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/SVN/">SVN</a>
+      
+      </span>
+      
+    </p>
+    
+    <h4 id="签出源代码到本机"><a href="#签出源代码到本机" class="headerlink" title="签出源代码到本机"></a>签出源代码到本机</h4><p>在本机创建文件夹<code>StartKit</code>，右键点击<code>Checkout</code>，弹出如下图的窗体：<br><a id="more"></a><br><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_13927803776NBs.png" alt="enter description here"></p>
+<p>文本框中输入<code>svn server</code>中的代码库的地址，其他默认，点击OK按钮,就开始签出源代码了</p>
+<p>上图中的<code>Checkout Depth</code>，有4个选项，分别是迁出全部、只签出下一级子目录和文件、只签出文件、只签出空项目，默认的是第一项。上面的例子中，我们也可以使用web的方式访问代码库，在浏览器中输入<code>http://zt.net.henu.edu.cn/svn/StartKit/</code><br>这时候也会弹出对话框，要求输入用户名和密码，通过验证后即可浏览代码库中的内容。</p>
+<p>到此，源代码已经成功签出到刚才新建的StartKit目录中</p>
+<p>打开StartKit目录，可以看到如下图的文件夹结构：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_1392780401u5bf.png" alt="enter description here"></p>
+<p>一旦你对文件或文件夹做了任何修改，那么文件或文件夹的显示图片机会发生变化</p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_13927804137Lrz.png" alt="enter description here"></p>
+<ul>
+<li><strong>不同状态所对应的图片</strong></li>
+</ul>
+<p><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_1392780423j7W7.png" alt="enter description here"></p>
+<hr>
+<h4 id="提交修改过的文件到SVN服务器"><a href="#提交修改过的文件到SVN服务器" class="headerlink" title="提交修改过的文件到SVN服务器"></a>提交修改过的文件到SVN服务器</h4><p>注意：提交源代码到服务器时，一定确保本机的代码是最新版本，否则可能提交失败，或者造成版本冲突</p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_139278051015SO.png" alt="enter description here"></p>
+<ul>
+<li>添加新文件到SVN服务器</li>
+</ul>
+<p>点击<code>TortoiseSVN=&gt;&gt;Add</code>；再<code>SVN Commit</code>这个文件一次，才可以将其真正提交到SVN服务器上的代码库中</p>
+<p>更新本机代码与SVN服务器上最新的版本一致</p>
+<p>只要在需要更新的文件夹上点击右键或在该文件下的空白处点击右键，点击<code>SVN Update</code>，就可以</p>
+<p>注意：更新操作可能会因为版本冲突而失败，这是可以使用合并【<code>Merge</code>】或其他方法解决；也可能因为锁定【<code>Get Lock</code>】而失败，这是需要先解锁【<code>Release Lock</code>】。</p>
+<ul>
+<li><strong>重命名文件或文件夹，并将修改提交到SVN服务器</strong></li>
+</ul>
+<p>要在需要重命名的文件或文件夹上点击右键，点击<code>TortiseSVN=&gt;&gt;Rename</code>…，在弹出的窗体中输入新名称，点击OK按钮，就可以了。此方法也不是直接重命名，而是将该文件或文件夹的名称标记为重命名后名称，也需要我们使用<code>SVN Commit</code>提交到SVN服务器后才真正重命名</p>
+<ul>
+<li><strong>删除文件或文件夹，并将修改提交到SVN服务器</strong></li>
+</ul>
+<p>最简单就是，你直接删除文件或文件夹，然后使用<code>SVN Commit</code>提交更新到SVN服务器。另外一种方法是在你要删除的文件或文件夹上点击右键<code>=&gt;&gt;TortoiseSVN=&gt;&gt;Delete</code>删除,此方法也不是直接删除，而是将该文件或文件夹的状态置为删除，也需要我们使用SVN Commit提交到SVN服务器后才真正删除。</p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/19/27004869_1392780878aoOo.png" alt="enter description here"></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#签出源代码到本机"><span class="toc-text">签出源代码到本机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交修改过的文件到SVN服务器"><span class="toc-text">提交修改过的文件到SVN服务器</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/07/09/非常实用的git命令/" class="prev">&larr; Prev post 非常实用的git命令</a>
+  
+
+  
+
+  
+    <a href="/2016/07/08/前端开发面试题/" class="next">Next post 前端开发面试题 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

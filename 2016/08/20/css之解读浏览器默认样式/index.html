@@ -1,0 +1,399 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Poetry">
+  
+  
+  
+  
+    <meta name="description" content="理念上的转变">
+  
+  <title>css之解读浏览器默认样式 [ Poetry's Blog ]</title>
+  
+    <link rel="alternate" href="/atom.xml" title="Poetry's Blog">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2016/08/20/css之盒子模型/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css之盒子模型
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2016/08/20/css样式来源与层叠规则/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        css样式来源与层叠规则
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg"/>
+          <div id="homelink">Poetry's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://blog.poetries.top/archives/">Archives</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>css之解读浏览器默认样式</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-08-20</span>
+      
+        <span id = "post-title-updated">Updated at 2017-01-06</span>
+      
+      
+      <span id = "post-title-categories">Category
+      
+      
+        
+        
+        <a href="/categories/Front-End/">Front-End</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      Tag
+      
+      
+        
+        
+        <a href="/tags/CSS/">CSS</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="理念上的转变"><a href="#理念上的转变" class="headerlink" title="理念上的转变"></a>理念上的转变</h3><hr>
+<a id="more"></a>
+<p>浏览器加载了html之后只为一件东西——<code>dom</code>树，浏览器把<code>html</code>变为<code>dom</code>树结构，就完成了对<code>html</code>的结构化。至于后来对视图的渲染，p是<code>block</code>、<code>br</code>换行，那是整合了<code>css</code>之后的事情。而浏览器整合<code>css</code>又是另一个路线，和解析<code>html</code>是分开的。这里的<code>“css”</code>就包含了浏览器默认样式。</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090820101205470.png" alt=""></p>
+<p><strong>一句话，浏览器将载入的<code>html</code>变为<code>dom</code>树，但是此时没有任何显示样式。所以显示的样式，都是css定义的，浏览器只会通过css来渲染视图样式</strong></p>
+<h3 id="block元素"><a href="#block元素" class="headerlink" title="block元素"></a>block元素</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090820369016121.png" alt=""></p>
+<p>为何默认情况下<code>p</code>、<code>h1</code>、<code>ul</code>、<code>div</code>都是<code>block</code>显示，就是这里定义的。所以，不要再说<code>div</code>天生就是<code>block</code>——这句话应该换成：<code>浏览器默认样式天生规定了div是block——所以才导致了div是block！是默认样式规定的，不是浏览器的内核规定的。</code></p>
+<p>没有设置<code>block</code>的元素，默认为<code>inline</code>显示</p>
+<h3 id="display-list-item"><a href="#display-list-item" class="headerlink" title="display: list-item"></a>display: list-item</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090821140895694.png" alt=""></p>
+<p>我们在使用<code>display</code>，常用的值一般是：<code>inline/block/inline-block</code>，用不到<code>list-item</code>。那这里的<code>list-item</code>到底有什么作用？</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090821251516313.png" alt=""></p>
+<p>出现了<code>ul-li</code>中的效果了吧，如果再加一个<code>margin-left</code>是不是就跟<code>ul-li</code>一样了？所以，<code>ul-li</code>为什么会默认显示成那种样子？——<code>list-item</code>才是“罪魁祸首”</p>
+<h3 id="diplay-table"><a href="#diplay-table" class="headerlink" title="diplay:table"></a>diplay:table</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090822126047851.png" alt=""></p>
+<p> 先给出一个快速思考题：<code>&lt;table&gt;</code>和<code>&lt;div&gt;</code>在容器尺寸上最大区别是什么（只是容器尺寸，不考虑内容区别）？请在两秒钟内说出答案。</p>
+<p>答案是——<code>div</code>宽度和父容器相同，<code>table</code>宽度根据内容而定——即<code>table</code>具有“包裹性”</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090822225585144.png" alt=""></p>
+<p>第一个<code>div</code>默认是<code>block</code>，宽度撑满整个页面。第二<code>div</code>设置了<code>display:table</code>，宽度根据内容而定。这就是“包裹性”</p>
+<h3 id="display-table-cell"><a href="#display-table-cell" class="headerlink" title="display: table-cell"></a>display: table-cell</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090823168238830.png" alt=""></p>
+<p>这里的大部分都是我们一直都不会用到的，用不到的了解即可，没必要深究。但是这个<code>table-cel</code>我们却能用得到，而且是用它来干一件很重要的事情——多列布局</p>
+<p>传统模式下大家都使用<code>float</code>来解决这一问题，但是<code>float</code>写出来的东西代码复杂，宽度调整不灵活，浏览器兼容性有问题。所以才有了新方案——<code>table-cell</code>，注意，<code>IE6、7</code>不行</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090825054791337.png" alt=""></p>
+<p>你可以用<code>table-cell</code>，像用<code>table</code>一样做多列布局，做出来的效果和<code>table</code>做出来的效果是一模一样的</p>
+<h3 id="body样式"><a href="#body样式" class="headerlink" title="body样式"></a>body样式</h3><hr>
+<p>在<code>body</code>中，定义了两个样式<br><img src="http://images.cnitblog.com/blog/138012/201502/090826064958362.png" alt=""></p>
+<ul>
+<li><p>不同浏览器为body设置的margin值可能不一样，因此大家都知道在<code>css</code>中用 <code>*{margin:0}</code>来解决这一兼容性问题</p>
+</li>
+<li><p>浏览器默认样式还为<code>body</code>设置了<code>line-height</code>，<code>line-height</code>这个值1.12是对英文比较友好，中文状态下就显得有点拥挤。<code>Line-height</code>是具有继承性的，在<code>body</code>中设置了，<code>body</code>下面所有的文字都会继承生效</p>
+</li>
+</ul>
+<p>这里的<code>line-height: 1.12</code>是一个相对值，即是文字高度的<code>1.12</code>倍。看到这里，我们在写<code>line-height</code>的时候，也一定要注意使用相对值，不要使用绝对值。如下：</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090827098705700.png" alt=""></p>
+<p>上图是编写<code>line-height</code>的三种形式，大家觉得哪种形式最好？区别是什么？</p>
+<ul>
+<li>情况1：永远按照文字的<code>1.4</code>倍计算，不管文字的高度如何，可适应任何变化；</li>
+<li>情况2：永远按照<code>1.4em</code>计算，随着<code>em</code>的值改变，不管文字高度如何（此时文字高度可能已经通过绝对的<code>px</code>值该表了大小，而不是随em改变的）；</li>
+<li>情况3：就是<code>25px</code>，绝对的。</li>
+</ul>
+<p>相信看到这里大家会发现，通过一个<code>line-height</code>我能能窥探到的道道有很多。如果大家看懂了这三种情况，从软件设计和系统扩展的角度说，当然我们都会<code>选择第一种</code>。</p>
+<h3 id="em和px"><a href="#em和px" class="headerlink" title="em和px"></a>em和px</h3><hr>
+<p>因为<code>px</code>是固定大小，一目了然。——当然，它也不利于扩展<br>因此，我们推荐大家用<code>em</code>。而且浏览器的默认样式也建议我们这样书写：</p>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090828404176105.png" alt=""></p>
+<p><code>em</code>是什么？——<code>em</code>是一个浏览器识别的长度单位，但是它不是绝对的、固定的，而是相对的。大家都知道<code>px</code>是一个绝对的长度单位制，它永远不会改变。浏览器默认情况下令<code>1em === 16px</code>。现在你知道为何p默认是<code>16px</code>了吧。而且你还知道了<code>h1</code>是<code>p</code>高度的两倍，<code>h2</code>是p高度的<code>1.5</code>倍</p>
+<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090829319794453.png" alt=""></p>
+<p>上图中，标注了在整个<code>html</code>中，哪些元素设置了粗体/斜体。重点还是一个思维转换的问题：<code>h1</code>不是天生的粗体，而是设置了<code>font-weight:bolder</code>的样式而已</p>
+<h3 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h3><hr>
+<p><img src="http://images.cnitblog.com/blog/138012/201502/090830027458186.png" alt=""></p>
+<p>看看浏览器默认样式告诉你的捷径：<code>button</code>、<code>input</code>就是<code>inline-block</code>！这样以点播你就会一下子明白，最起码能给你一个很好的形象的概念。看看<code>button</code>和<code>input</code>的表现，你就知道<code>inline-block</code>是什么样子了</p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#理念上的转变"><span class="toc-text">理念上的转变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block元素"><span class="toc-text">block元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display-list-item"><span class="toc-text">display: list-item</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diplay-table"><span class="toc-text">diplay:table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display-table-cell"><span class="toc-text">display: table-cell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#body样式"><span class="toc-text">body样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#em和px"><span class="toc-text">em和px</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#粗体和斜体"><span class="toc-text">粗体和斜体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline-block"><span class="toc-text">inline-block</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2016/08/20/css之盒子模型/" class="prev">&larr; Prev post css之盒子模型</a>
+  
+
+  
+
+  
+    <a href="/2016/08/20/css样式来源与层叠规则/" class="next">Next post css样式来源与层叠规则 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Poetry using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+        &copy;
+        
+
+        2015
+        
+         - 2017
+        
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7xq6al.com1.z0.glb.clouddn.com/16177576.jpg">
+    <p id="description">技术改变生活</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/poetries">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/poetries1">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.jianshu.com/users/94077fcddfc0/latest_articles">
+        
+          <i class="icon iconfont jian">&#xe610;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?40b1f89aa80f2527b3db779c6898c879";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
